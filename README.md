@@ -39,9 +39,14 @@ class FooTest {
   @Test
   void worksAsExpected() {
     MatcherAssert.assertThat(
-      "Compiles without any issues",
-      new Together(),
-      Matchers.allItems(Matchers.equalTo(1))
+      "processes all lambdas successfully",
+      new Together(
+        () -> {
+          // do the job
+          return true;
+        }
+      ),
+      Matchers.not(Matchers.hasItem(Matchers.is(false)))
     );
   }
 }
