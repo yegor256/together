@@ -25,6 +25,7 @@ package com.yegor256;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -42,6 +43,19 @@ final class TogetherTest {
                 t -> 1
             ),
             Matchers.not(Matchers.hasItem(Matchers.equalTo(0)))
+        );
+    }
+
+    @Test
+    void failsInAllThreads() {
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> new Together<>(
+                t -> {
+                    throw new IllegalArgumentException("intended");
+                }
+            ).iterator(),
+            "fails because of failure in lambda"
         );
     }
 
