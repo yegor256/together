@@ -32,8 +32,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Runs a lambda in multiple threads.
@@ -75,8 +73,6 @@ public final class Together<T> implements Iterable<T> {
     @SuppressWarnings("PMD.CloseResource")
     public Iterator<T> iterator() {
         final CountDownLatch latch = new CountDownLatch(1);
-        final AtomicBoolean running = new AtomicBoolean();
-        final AtomicInteger overlaps = new AtomicInteger();
         final ExecutorService service =
             Executors.newFixedThreadPool(this.threads);
         try {
@@ -88,13 +84,7 @@ public final class Together<T> implements Iterable<T> {
                     service.submit(
                         () -> {
                             latch.await();
-                            if (running.get()) {
-                                overlaps.incrementAndGet();
-                            }
-                            running.set(true);
-                            final T ret = this.action.apply(thread);
-                            running.set(false);
-                            return ret;
+                            return this.action.apply(thread);
                         }
                     )
                 );
