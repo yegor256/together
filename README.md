@@ -34,7 +34,8 @@ First, you add this library to your `pom.xml`:
 </dependency>
 ```
 
-Then, you use it like this, in your JUnit5 test:
+Then, you use it like this, in your [JUnit5] test
+(with [Hamcrest]):
 
 ```java
 import org.hamcrest.MatcherAssert;
@@ -60,11 +61,6 @@ class FooTest {
 }
 ```
 
-Here, the "job" will be executed in multiple threads, in parallel,
-and the result of each execution will be collected in a list. Then,
-the list will be checked for any `false` values. If there is at least
-one, the test will fail.
-
 ## How to Contribute
 
 Fork repository, make changes, send us a
@@ -80,3 +76,6 @@ mvn clean install -Pqulice
 You will need Maven 3.3+ and Java 11+.
 
 [blog]: https://www.yegor256.com/2018/03/27/how-to-test-thread-safety.html
+[JUnit5]: https://junit.org/junit5/
+[Hamcrest]: http://hamcrest.org
+
