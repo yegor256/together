@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -117,6 +118,18 @@ public final class Together<T> implements Iterable<T> {
                 throw new IllegalArgumentException(ex);
             }
         }
+    }
+
+    /**
+     * Turn it into a list.
+     * @return The list
+     */
+    public List<T> asList() {
+        final List<T> list = new LinkedList<>();
+        for (final T item : this) {
+            list.add(item);
+        }
+        return list;
     }
 
     /**

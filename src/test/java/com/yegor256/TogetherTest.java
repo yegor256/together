@@ -54,7 +54,7 @@ final class TogetherTest {
                 t -> {
                     throw new IllegalArgumentException("intended");
                 }
-            ).iterator(),
+            ).asList(),
             "fails because of failure in lambda"
         );
     }
