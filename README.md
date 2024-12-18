@@ -24,7 +24,7 @@ either more complex or less tests-oriented, for example
 or
 `Threads` class in [Cactoos](https://github.com/yegor256/cactoos).
 
-First, you add this library to your `pom.xml`:
+First, you add this library to your `pom.xml` in [Maven]:
 
 ```xml
 <dependency>
@@ -78,4 +78,5 @@ You will need Maven 3.3+ and Java 11+.
 [blog]: https://www.yegor256.com/2018/03/27/how-to-test-thread-safety.html
 [JUnit5]: https://junit.org/junit5/
 [Hamcrest]: http://hamcrest.org
-
+[Maven]: https://maven.apache.org
+```
