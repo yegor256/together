@@ -18,6 +18,12 @@ in multiple parallel threads. You may read this blog post,
 in order to understand the motivation for this type of
 testing better: [How I Test My Java Classes for Thread-Safety][blog].
 
+By the way, there are similar libraries for Java, but they are
+either more complex or less tests-oriented, for example
+[ConcurrentUnit](https://github.com/jhalterman/concurrentunit)
+or
+`Threads` class in [Cactoos](https://github.com/yegor256/cactoos).
+
 First, you add this library to your `pom.xml`:
 
 ```xml
