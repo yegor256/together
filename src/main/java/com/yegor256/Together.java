@@ -102,7 +102,7 @@ public final class Together<T> implements Iterable<T> {
                     throw new IllegalArgumentException(ex);
                 }
             }
-            return rets.iterator();
+            return new Together.Iter<>(rets, rets.iterator());
         } finally {
             service.shutdown();
             try {
@@ -132,5 +132,55 @@ public final class Together<T> implements Iterable<T> {
          * @return The result
          */
         T apply(int thread);
+    }
+
+    /**
+     * The iterator.
+     *
+     * @param <T> The type of result
+     * @since 0.0.2
+     */
+    private static final class Iter<T> implements Iterator<T> {
+        /**
+         * The list of items.
+         */
+        private final Collection<T> items;
+
+        /**
+         * The iterator.
+         */
+        private final Iterator<T> iterator;
+
+        /**
+         * Ctor.
+         * @param list The list
+         * @param iter The iterator
+         */
+        Iter(final Collection<T> list, final Iterator<T> iter) {
+            this.items = list;
+            this.iterator = iter;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.iterator.hasNext();
+        }
+
+        @Override
+        public T next() {
+            return this.iterator.next();
+        }
+
+        @Override
+        public String toString() {
+            final StringBuilder text = new StringBuilder(0).append('[');
+            for (final T item : this.items) {
+                if (text.length() > 1) {
+                    text.append(", ");
+                }
+                text.append(item);
+            }
+            return text.append(']').toString();
+        }
     }
 }
