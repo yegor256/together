@@ -32,6 +32,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Runs a lambda in multiple threads.
@@ -70,7 +71,7 @@ public final class Together<T> implements Iterable<T> {
     }
 
     @Override
-    @SuppressWarnings("PMD.CloseResource")
+    @SuppressWarnings({"PMD.CloseResource", "PMD.DoNotThrowExceptionInFinally"})
     public Iterator<T> iterator() {
         final CountDownLatch latch = new CountDownLatch(1);
         final ExecutorService service =
@@ -104,6 +105,17 @@ public final class Together<T> implements Iterable<T> {
             return rets.iterator();
         } finally {
             service.shutdown();
+            try {
+                if (!service.awaitTermination(1L, TimeUnit.MINUTES)) {
+                    service.shutdownNow();
+                    if (!service.awaitTermination(1L, TimeUnit.MINUTES)) {
+                        throw new IllegalStateException("Can't shutdown");
+                    }
+                }
+            } catch (final InterruptedException ex) {
+                Thread.currentThread().interrupt();
+                throw new IllegalArgumentException(ex);
+            }
         }
     }
 
