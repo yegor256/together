@@ -14,9 +14,11 @@
 
 With this small Java library you can test your objects
 for thread-safety by doing some manipulations with them
-in multiple parallel threads.
+in multiple parallel threads. You may read this blog post,
+in order to understand the motivation for this type of
+testing better: [How I Test My Java Classes for Thread-Safety][blog].
 
-First, you add this to your `pom.xml`:
+First, you add this library to your `pom.xml`:
 
 ```xml
 <dependency>
@@ -29,18 +31,18 @@ First, you add this to your `pom.xml`:
 Then, you use it like this, in your JUnit5 test:
 
 ```java
-import com.yegor256.Together;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import com.yegor256.Together;
 
 class FooTest {
   @Test
   void worksAsExpected() {
     MatcherAssert.assertThat(
       "processes all lambdas successfully",
-      new Together(
+      new Together<>(
         () -> {
           // do the job
           return true;
@@ -65,3 +67,5 @@ mvn clean install -Pqulice
 ```
 
 You will need Maven 3.3+ and Java 11+.
+
+[blog]: https://www.yegor256.com/2018/03/27/how-to-test-thread-safety.html
