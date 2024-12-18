@@ -123,6 +123,7 @@ public final class Together<T> implements Iterable<T> {
     /**
      * Turn it into a list.
      * @return The list
+     * @since 0.0.3
      */
     public List<T> asList() {
         final List<T> list = new LinkedList<>();
