@@ -144,8 +144,9 @@ public final class Together<T> implements Iterable<T> {
          * Apply it.
          * @param thread The thread number
          * @return The result
+         * @throws Exception If fails
          */
-        T apply(int thread);
+        T apply(int thread) throws Exception;
     }
 
     /**
