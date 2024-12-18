@@ -83,4 +83,3 @@ You will need Maven 3.3+ and Java 11+.
 [JUnit5]: https://junit.org/junit5/
 [Hamcrest]: http://hamcrest.org
 [Maven]: https://maven.apache.org
-```
