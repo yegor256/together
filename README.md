@@ -60,6 +60,11 @@ class FooTest {
 }
 ```
 
+Here, the "job" will be executed in multiple threads, in parallel,
+and the result of each execution will be collected in a list. Then,
+the list will be checked for any `false` values. If there is at least
+one, the test will fail.
+
 ## How to Contribute
 
 Fork repository, make changes, send us a
