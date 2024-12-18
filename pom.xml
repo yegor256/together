@@ -31,7 +31,7 @@ SOFTWARE.
   </parent>
   <groupId>com.yegor256</groupId>
   <artifactId>together</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.3</version>
   <packaging>jar</packaging>
   <name>together</name>
   <description>Executes Java lambda in multiple threads</description>
