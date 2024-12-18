@@ -61,6 +61,10 @@ class FooTest {
 }
 ```
 
+Here, the `Together` class will run the "job" in multiple threads
+and will make sure that all of them return `true`. If at least
+one of them returns `false`, the test will fail.
+
 ## How to Contribute
 
 Fork repository, make changes, send us a
