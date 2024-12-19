@@ -20,9 +20,10 @@ testing better: [How I Test My Java Classes for Thread-Safety][blog].
 
 By the way, there are similar libraries for Java, but they are
 either more complex or less tests-oriented, for example
-[ConcurrentUnit](https://github.com/jhalterman/concurrentunit)
+[ConcurrentUnit](https://github.com/jhalterman/concurrentunit),
+[`RunsInThreads`][RunsInThreads] from [cactoos-matchers],
 or
-`Threads` class in [Cactoos](https://github.com/yegor256/cactoos).
+[`Threads`][Threads] from [Cactoos](https://github.com/yegor256/cactoos).
 
 First, you add this library to your `pom.xml` in [Maven]:
 
@@ -92,3 +93,6 @@ You will need Maven 3.3+ and Java 11+.
 [Maven]: https://maven.apache.org
 [race condition]: https://en.wikipedia.org/wiki/Race_condition
 [thread safety]: https://en.wikipedia.org/wiki/Thread_safety
+[RunsInThreads]: https://github.com/llorllale/cactoos-matchers/blob/master/src/main/java/org/llorllale/cactoos/matchers/RunsInThreads.java
+[cactoos-matchers]: https://github.com/llorllale/cactoos-matchers
+[Threads]: https://github.com/yegor256/cactoos/blob/master/src/main/java/org/cactoos/experimental/Threads.java
