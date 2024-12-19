@@ -79,6 +79,7 @@ import java.util.concurrent.TimeUnit;
  * @see <a href="https://junit.org/junit5/">JUnit5</a>
  * @see <a href="http://hamcrest.org">Hamcrest</a>
  * @see <a href="https://en.wikipedia.org/wiki/Race_condition">Race condition</a>
+ * @see <a href="https://github.com/yegor256/together">GitHub repository</a>
  * @since 0.0.1
  */
 public final class Together<T> implements Iterable<T> {
