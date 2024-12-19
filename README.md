@@ -85,7 +85,7 @@ before sending us your pull request please run full Maven build:
 mvn clean install -Pqulice
 ```
 
-You will need Maven 3.3+ and Java 11+.
+You will need [Maven] 3.3+ and Java 11+.
 
 [blog]: https://www.yegor256.com/2018/03/27/how-to-test-thread-safety.html
 [JUnit5]: https://junit.org/junit5/
