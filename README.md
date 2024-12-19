@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/together/blob/master/LICENSE.txt)
 
 With this small Java library you can test your objects
-for thread-safety by doing some manipulations with them
+for [thread safety] by doing some manipulations with them
 in multiple parallel threads. You may read this blog post,
 in order to understand the motivation for this type of
 testing better: [How I Test My Java Classes for Thread-Safety][blog].
@@ -91,4 +91,4 @@ You will need Maven 3.3+ and Java 11+.
 [Hamcrest]: http://hamcrest.org
 [Maven]: https://maven.apache.org
 [race condition]: https://en.wikipedia.org/wiki/Race_condition
-
+[thread safety]: https://en.wikipedia.org/wiki/Thread_safety
