@@ -63,7 +63,14 @@ class FooTest {
 
 Here, the `Together` class will run the "job" in multiple threads
 and will make sure that all of them return `true`. If at least
-one of them returns `false`, the test will fail.
+one of them returns `false`, the test will fail. If at least one of the
+threads will throw an exception, the test will also fail.
+
+`Together` guarantees that all threads will start exactly simultaneously,
+thus simulating [race condition] as much as it's possible. This is exactly
+what you need for your tests: making sure your object under test
+experiences troubles that are very similar to what it might experience
+in real life.
 
 ## How to Contribute
 
@@ -83,3 +90,5 @@ You will need Maven 3.3+ and Java 11+.
 [JUnit5]: https://junit.org/junit5/
 [Hamcrest]: http://hamcrest.org
 [Maven]: https://maven.apache.org
+[race condition]: https://en.wikipedia.org/wiki/Race_condition
+
