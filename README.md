@@ -52,8 +52,9 @@ class FooTest {
     MatcherAssert.assertThat(
       "processes all lambdas successfully",
       new Together<>(
-        () -> {
-          // do the job
+        thread -> {
+          // Do the job and use "thread" as a number
+          // of the thread currently running (they are all unique).
           return true;
         }
       ),
