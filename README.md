@@ -20,6 +20,7 @@ testing better: [How I Test My Java Classes for Thread-Safety][blog].
 
 By the way, there are similar libraries for Java, but they are
 either more complex or less tests-oriented, for example
+[lincheck],
 [ConcurrentUnit](https://github.com/jhalterman/concurrentunit),
 [`RunsInThreads`][RunsInThreads] from [cactoos-matchers],
 or
@@ -96,3 +97,4 @@ You will need [Maven] 3.3+ and Java 11+.
 [RunsInThreads]: https://github.com/llorllale/cactoos-matchers/blob/master/src/main/java/org/llorllale/cactoos/matchers/RunsInThreads.java
 [cactoos-matchers]: https://github.com/llorllale/cactoos-matchers
 [Threads]: https://github.com/yegor256/cactoos/blob/master/src/main/java/org/cactoos/experimental/Threads.java
+[lincheck]: https://github.com/JetBrains/lincheck
