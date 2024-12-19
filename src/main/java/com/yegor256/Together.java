@@ -75,11 +75,11 @@ import java.util.concurrent.TimeUnit;
  * in real life.</p>
  *
  * @param <T> The type of result
- * @since 0.0.1
  * @see <a href="https://www.yegor256.com/2018/03/27/how-to-test-thread-safety.html">How I Test My Java Classes for Thread-Safety</a>
  * @see <a href="https://junit.org/junit5/">JUnit5</a>
  * @see <a href="http://hamcrest.org">Hamcrest</a>
  * @see <a href="https://en.wikipedia.org/wiki/Race_condition">Race condition</a>
+ * @since 0.0.1
  */
 public final class Together<T> implements Iterable<T> {
 
