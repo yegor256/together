@@ -75,6 +75,9 @@ what you need for your tests: making sure your object under test
 experiences troubles that are very similar to what it might experience
 in real life.
 
+For even better/stronger testing, you can use
+[`@RepeatedTest`][RepeatedTest].
+
 ## How to Contribute
 
 Fork repository, make changes, send us a
@@ -99,3 +102,4 @@ You will need [Maven] 3.3+ and Java 11+.
 [cactoos-matchers]: https://github.com/llorllale/cactoos-matchers
 [Threads]: https://github.com/yegor256/cactoos/blob/master/src/main/java/org/cactoos/experimental/Threads.java
 [lincheck]: https://github.com/JetBrains/lincheck
+[RepeatedTest]: https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/RepeatedTest.html
