@@ -96,10 +96,15 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Ctor.
+     *
+     * <p>The number of threads here will be the maximum of current
+     * available CPUs on the host machine and the number three. Thus, at
+     * least three threads will be executed.</p>
+     *
      * @param act The action
      */
     public Together(final Together.Action<T> act) {
-        this(Runtime.getRuntime().availableProcessors(), act);
+        this(Math.max(Runtime.getRuntime().availableProcessors(), 3), act);
     }
 
     /**
