@@ -32,7 +32,7 @@ First, you add this library to your `pom.xml` in [Maven]:
 <dependency>
   <groupId>com.yegor256</groupId>
   <artifactId>together</artifactId>
-  <version>0.0.5</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
