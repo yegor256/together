@@ -108,22 +108,33 @@ final class TogetherTest {
     void interruptsCurrentThreadCorrectly() throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
         final Thread main = new Thread(
-            () -> new Together<>(
-                1,
-                t -> {
-                    latch.countDown();
-                    Thread.sleep(100_000L);
-                    return t;
+            () -> {
+                try {
+                    new Together<>(
+                        1,
+                        t -> {
+                            latch.countDown();
+                            Thread.sleep(100_000L);
+                            return t;
+                        }
+                    ).asList();
+                } catch (final IllegalArgumentException ex) {
+                    MatcherAssert.assertThat(
+                        "doesn't interrupt the main thread",
+                        Thread.currentThread().isInterrupted(),
+                        Matchers.is(true)
+                    );
                 }
-            ).asList()
+            }
         );
         main.start();
         latch.await();
         main.interrupt();
+        main.join(100L, 0);
         MatcherAssert.assertThat(
-            "doesn't interrupt the main thread",
-            main.isInterrupted(),
-            Matchers.is(true)
+            "failed to stop the thread",
+            main.isAlive(),
+            Matchers.is(false)
         );
     }
 
