@@ -24,6 +24,7 @@
 package com.yegor256;
 
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -99,7 +100,30 @@ final class TogetherTest {
                     throw new IllegalArgumentException("intended");
                 }
             ).asList(),
-            "fails because of failure in lambda"
+            "doesn't fail when one of the threads fails"
+        );
+    }
+
+    @Test
+    void interruptsCurrentThreadCorrectly() throws InterruptedException {
+        final CountDownLatch latch = new CountDownLatch(1);
+        final Thread main = new Thread(
+            () -> new Together<>(
+                1,
+                t -> {
+                    latch.countDown();
+                    Thread.sleep(100_000L);
+                    return t;
+                }
+            ).asList()
+        );
+        main.start();
+        latch.await();
+        main.interrupt();
+        MatcherAssert.assertThat(
+            "doesn't interrupt the main thread",
+            main.isInterrupted(),
+            Matchers.is(true)
         );
     }
 
