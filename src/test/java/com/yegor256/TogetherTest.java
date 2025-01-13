@@ -23,6 +23,7 @@
  */
 package com.yegor256;
 
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -125,12 +126,17 @@ final class TogetherTest {
     @Test
     void startsInRandomOrder() {
         final int threads = 10;
+        final CopyOnWriteArrayList<Integer> seen = new CopyOnWriteArrayList<>();
+        new Together<>(
+            threads,
+            t -> {
+                seen.add(t);
+                return t;
+            }
+        ).asList();
         MatcherAssert.assertThat(
             "fails to start them parallel, in random order",
-            new Together<>(
-                threads,
-                t -> t
-            ).iterator().toString(),
+            seen,
             Matchers.not(
                 Matchers.hasToString(
                     Matchers.containsString(
