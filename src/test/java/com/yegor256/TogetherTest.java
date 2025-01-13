@@ -134,7 +134,7 @@ final class TogetherTest {
             Matchers.not(
                 Matchers.hasToString(
                     Matchers.containsString(
-                        IntStream.rangeClosed(1, threads)
+                        IntStream.rangeClosed(0, threads - 1)
                             .mapToObj(String::valueOf)
                             .collect(Collectors.joining(", "))
                     )
