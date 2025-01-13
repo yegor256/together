@@ -23,6 +23,7 @@
  */
 package com.yegor256;
 
+import org.cactoos.set.SetOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -38,11 +39,49 @@ final class TogetherTest {
     @Test
     void runsSimpleTest() {
         MatcherAssert.assertThat(
-            "can collect all numbers",
+            "fails to collect all numbers",
             new Together<>(
                 t -> 1
             ),
             Matchers.not(Matchers.hasItem(Matchers.equalTo(0)))
+        );
+    }
+
+    @Test
+    void returnsUniqueThreadNumbers() {
+        final int threads = 10;
+        MatcherAssert.assertThat(
+            "fails to collect unique numbers",
+            new SetOf<>(
+                new Together<>(
+                    threads,
+                    t -> t
+                ).asList()
+            ).size(),
+            Matchers.equalTo(threads)
+        );
+    }
+
+    @Test
+    void printsNiceString() {
+        MatcherAssert.assertThat(
+            "fails to print toString",
+            new Together<>(
+                t -> t
+            ).iterator().toString(),
+            Matchers.hasToString(Matchers.containsString("0, 1, 2"))
+        );
+    }
+
+    @Test
+    void printsOneElementToString() {
+        MatcherAssert.assertThat(
+            "fails to print toString",
+            new Together<>(
+                1,
+                t -> t
+            ).iterator().toString(),
+            Matchers.hasToString("[0]")
         );
     }
 
