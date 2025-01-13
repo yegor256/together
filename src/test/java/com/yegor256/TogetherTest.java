@@ -23,8 +23,9 @@
  */
 package com.yegor256;
 
-import io.github.artsok.RepeatedIfExceptionsTest;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.cactoos.set.SetOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -121,15 +122,24 @@ final class TogetherTest {
         );
     }
 
-    @RepeatedIfExceptionsTest(repeats = 5)
+    @Test
     void startsInRandomOrder() {
+        final int threads = 10;
         MatcherAssert.assertThat(
             "fails to start them parallel, in random order",
             new Together<>(
-                4,
+                threads,
                 t -> t
             ).iterator().toString(),
-            Matchers.not(Matchers.hasToString(Matchers.containsString("0, 1, 2, 3")))
+            Matchers.not(
+                Matchers.hasToString(
+                    Matchers.containsString(
+                        IntStream.rangeClosed(1, threads)
+                            .mapToObj(String::valueOf)
+                            .collect(Collectors.joining(", "))
+                    )
+                )
+            )
         );
     }
 
