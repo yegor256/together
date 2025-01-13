@@ -23,10 +23,13 @@
  */
 package com.yegor256;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.cactoos.set.SetOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -76,7 +79,7 @@ final class TogetherTest {
     @Test
     void printsOneElementToString() {
         MatcherAssert.assertThat(
-            "fails to print toString",
+            "fails to print one-element toString",
             new Together<>(
                 1,
                 t -> t
@@ -95,6 +98,28 @@ final class TogetherTest {
                 }
             ).asList(),
             "fails because of failure in lambda"
+        );
+    }
+
+    @RepeatedTest(5)
+    void overlapsThreads() {
+        final AtomicBoolean running = new AtomicBoolean(false);
+        final AtomicInteger overlapped = new AtomicInteger(0);
+        new Together<>(
+            t -> {
+                if (running.get()) {
+                    overlapped.incrementAndGet();
+                }
+                running.set(true);
+                Thread.sleep(10L);
+                running.set(false);
+                return t;
+            }
+        ).asList();
+        MatcherAssert.assertThat(
+            "fails to overlap threads",
+            overlapped.get(),
+            Matchers.greaterThan(0)
         );
     }
 
