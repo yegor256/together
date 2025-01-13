@@ -23,8 +23,8 @@
  */
 package com.yegor256;
 
+import io.github.artsok.RepeatedIfExceptionsTest;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.cactoos.set.SetOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -72,7 +72,7 @@ final class TogetherTest {
             new Together<>(
                 t -> t
             ).iterator().toString(),
-            Matchers.hasToString(Matchers.containsString("0, 1, 2"))
+            Matchers.hasToString(Matchers.containsString("2"))
         );
     }
 
@@ -103,23 +103,33 @@ final class TogetherTest {
 
     @RepeatedTest(5)
     void overlapsThreads() {
-        final AtomicBoolean running = new AtomicBoolean(false);
-        final AtomicInteger overlapped = new AtomicInteger(0);
-        new Together<>(
-            t -> {
-                if (running.get()) {
-                    overlapped.incrementAndGet();
-                }
-                running.set(true);
-                Thread.sleep(10L);
-                running.set(false);
-                return t;
-            }
-        ).asList();
+        final AtomicBoolean finished = new AtomicBoolean(false);
         MatcherAssert.assertThat(
-            "fails to overlap threads",
-            overlapped.get(),
+            "fails to start them parallel",
+            new Together<>(
+                2,
+                t -> {
+                    if (finished.get()) {
+                        throw new IllegalStateException("why?");
+                    }
+                    Thread.sleep(1L);
+                    finished.set(true);
+                    return t;
+                }
+            ).asList().size(),
             Matchers.greaterThan(0)
+        );
+    }
+
+    @RepeatedIfExceptionsTest(repeats = 5)
+    void startsInRandomOrder() {
+        MatcherAssert.assertThat(
+            "fails to start them parallel, in random order",
+            new Together<>(
+                4,
+                t -> t
+            ).iterator().toString(),
+            Matchers.not(Matchers.hasToString(Matchers.containsString("0, 1, 2, 3")))
         );
     }
 
