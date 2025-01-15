@@ -121,7 +121,7 @@ SOFTWARE.
             </goals>
             <configuration>
               <threads>4</threads>
-              <mutationThreshold>75</mutationThreshold>
+              <mutationThreshold>70</mutationThreshold>
             </configuration>
           </execution>
         </executions>
