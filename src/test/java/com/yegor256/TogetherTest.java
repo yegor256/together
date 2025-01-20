@@ -158,9 +158,9 @@ final class TogetherTest {
         );
     }
 
-    @Test
+    @RepeatedTest(10)
     void startsInRandomOrder() {
-        final int threads = 10;
+        final int threads = 100;
         final CopyOnWriteArrayList<Integer> seen = new CopyOnWriteArrayList<>();
         new Together<>(
             threads,
