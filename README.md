@@ -11,6 +11,7 @@
 [![codecov](https://codecov.io/gh/yegor256/together/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/together)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/together)](https://hitsofcode.com/view/github/yegor256/together)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/together/blob/master/LICENSE.txt)
+[![libs.tech recommends](https://libs.tech/project/904850130/badge.svg)](https://libs.tech/project/904850130/together)
 
 With this small Java library you can test your objects
 for [thread safety] by doing some manipulations with them
