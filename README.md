@@ -1,13 +1,13 @@
 # Runs Java Lambda in Many Threads
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/together)](http://www.rultor.com/p/yegor256/together)
+[![DevOps By Rultor.com](https://www.rultor.com/b/yegor256/together)](https://www.rultor.com/p/yegor256/together)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![mvn](https://github.com/yegor256/together/actions/workflows/mvn.yml/badge.svg)](https://github.com/yegor256/together/actions/workflows/mvn.yml)
-[![PDD status](http://www.0pdd.com/svg?name=yegor256/together)](http://www.0pdd.com/p?name=yegor256/together)
+[![PDD status](https://www.0pdd.com/svg?name=yegor256/together)](https://www.0pdd.com/p?name=yegor256/together)
 [![Maven Central](https://img.shields.io/maven-central/v/com.yegor256/together.svg)](https://maven-badges.herokuapp.com/maven-central/com.yegor256/together)
-[![Javadoc](http://www.javadoc.io/badge/com.yegor256/together.svg)](http://www.javadoc.io/doc/com.yegor256/together)
+[![Javadoc](https://www.javadoc.io/badge/com.yegor256/together.svg)](https://www.javadoc.io/doc/com.yegor256/together)
 [![codecov](https://codecov.io/gh/yegor256/together/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/together)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/together)](https://hitsofcode.com/view/github/yegor256/together)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/together/blob/master/LICENSE.txt)
