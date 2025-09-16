@@ -64,12 +64,12 @@ class FooTest {
 }
 ```
 
-Here, the `Together` class will run the "job" in multiple threads
-and will make sure that all of them return `true`. If at least
-one of them returns `false`, the test will fail. If at least one of the
-threads will throw an exception, the test will also fail.
+Here, the `Together` class runs the "job" in multiple threads
+and makes sure that all of them return `true`. If at least
+one of them returns `false`, the test fails. If at least one of the
+threads throws an exception, the test also fails.
 
-`Together` guarantees that all threads will start exactly simultaneously,
+`Together` guarantees that all threads start exactly simultaneously,
 thus simulating [race condition] as much as it's possible. This is exactly
 what you need for your tests: making sure your object under test
 experiences troubles that are very similar to what it might experience
