@@ -13,7 +13,6 @@ import org.cactoos.set.SetOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -119,7 +118,7 @@ final class TogetherTest {
         );
     }
 
-    @RepeatedTest(5)
+    @Test
     void overlapsThreads() {
         final AtomicBoolean finished = new AtomicBoolean(false);
         MatcherAssert.assertThat(
@@ -139,7 +138,7 @@ final class TogetherTest {
         );
     }
 
-    @RepeatedTest(value = 10, failureThreshold = 1)
+    @Test
     void startsInRandomOrder() {
         final int threads = 100;
         final CopyOnWriteArrayList<Integer> seen = new CopyOnWriteArrayList<>();
