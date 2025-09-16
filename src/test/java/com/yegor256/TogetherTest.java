@@ -139,7 +139,7 @@ final class TogetherTest {
         );
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(value = 10, failureThreshold = 1)
     void startsInRandomOrder() {
         final int threads = 100;
         final CopyOnWriteArrayList<Integer> seen = new CopyOnWriteArrayList<>();
@@ -147,6 +147,7 @@ final class TogetherTest {
             threads,
             t -> {
                 seen.add(t);
+                Thread.sleep(1L);
                 return t;
             }
         ).asList();
