@@ -147,7 +147,6 @@ final class TogetherTest {
             threads,
             t -> {
                 seen.add(t);
-                Thread.sleep(1L);
                 return t;
             }
         ).asList();

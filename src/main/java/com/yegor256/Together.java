@@ -6,6 +6,7 @@ package com.yegor256;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -107,13 +108,18 @@ public final class Together<T> implements Iterable<T> {
         try {
             final Collection<Future<T>> futures =
                 new ArrayList<>(this.threads);
+            final List<Integer> positions =
+                new ArrayList<>(this.threads);
             for (int pos = 0; pos < this.threads; ++pos) {
-                final int thread = pos;
+                positions.add(pos);
+            }
+            Collections.shuffle(positions);
+            for (final int pos : positions) {
                 futures.add(
                     service.submit(
                         () -> {
                             latch.await();
-                            return this.action.apply(thread);
+                            return this.action.apply(pos);
                         }
                     )
                 );
