@@ -4,6 +4,7 @@
  */
 package com.yegor256;
 
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -164,4 +165,21 @@ final class TogetherTest {
         );
     }
 
+    @Test
+    void returnsResultsInCorrectOrder() {
+        final int threads = 100;
+        final List<Integer> results = new Together<>(
+            threads,
+            t -> t
+        ).asList();
+        MatcherAssert.assertThat(
+            "the results should be returned in the order of thread indices",
+            results,
+            Matchers.contains(
+                IntStream.range(0, threads)
+                    .boxed()
+                    .toArray(Integer[]::new)
+            )
+        );
+    }
 }

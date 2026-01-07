@@ -7,9 +7,11 @@ package com.yegor256;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -106,16 +108,11 @@ public final class Together<T> implements Iterable<T> {
         final ExecutorService service =
             Executors.newFixedThreadPool(this.threads);
         try {
-            final Collection<Future<T>> futures =
-                new ArrayList<>(this.threads);
-            final List<Integer> positions =
-                new ArrayList<>(this.threads);
-            for (int pos = 0; pos < this.threads; ++pos) {
-                positions.add(pos);
-            }
-            Collections.shuffle(positions);
-            for (final int pos : positions) {
-                futures.add(
+            final Map<Integer, Future<T>> futures =
+                new HashMap<>();
+            for (final int pos : new Shuffled(this.threads)) {
+                futures.put(
+                    pos,
                     service.submit(
                         () -> {
                             latch.await();
@@ -126,9 +123,9 @@ public final class Together<T> implements Iterable<T> {
             }
             latch.countDown();
             final Collection<T> rets = new LinkedList<>();
-            for (final Future<T> future : futures) {
+            for (int index = 0; index < this.threads; ++index) {
                 try {
-                    rets.add(future.get());
+                    rets.add(futures.get(index).get());
                 } catch (final InterruptedException ex) {
                     Thread.currentThread().interrupt();
                     throw new IllegalArgumentException(ex);
@@ -229,6 +226,31 @@ public final class Together<T> implements Iterable<T> {
                 text.append(item);
             }
             return text.append(']').toString();
+        }
+    }
+
+    /**
+     * Shuffled sequence of integers.
+     * @since 0.1.1
+     */
+    private static final class Shuffled implements Iterable<Integer> {
+        /**
+         * The size of items.
+         */
+        private final int size;
+
+        Shuffled(final int size) {
+            this.size = size;
+        }
+
+        @Override
+        public Iterator<Integer> iterator() {
+            final List<Integer> items = new ArrayList<>(this.size);
+            for (int idx = 0; idx < this.size; ++idx) {
+                items.add(idx);
+            }
+            Collections.shuffle(items);
+            return items.iterator();
         }
     }
 }
