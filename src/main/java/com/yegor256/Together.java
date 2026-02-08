@@ -102,7 +102,7 @@ public final class Together<T> implements Iterable<T> {
     }
 
     @Override
-    @SuppressWarnings({"PMD.CloseResource", "PMD.DoNotThrowExceptionInFinally"})
+    @SuppressWarnings("PMD.DoNotThrowExceptionInFinally")
     public Iterator<T> iterator() {
         final CountDownLatch latch = new CountDownLatch(1);
         final ExecutorService service =
@@ -169,6 +169,7 @@ public final class Together<T> implements Iterable<T> {
      * @param <T> The type of result
      * @since 0.0.1
      */
+    @FunctionalInterface
     public interface Action<T> {
         /**
          * Apply it.
@@ -218,7 +219,7 @@ public final class Together<T> implements Iterable<T> {
 
         @Override
         public String toString() {
-            final StringBuilder text = new StringBuilder(0).append('[');
+            final StringBuilder text = new StringBuilder(16).append('[');
             for (final T item : this.items) {
                 if (text.length() > 1) {
                     text.append(", ");

@@ -4,11 +4,9 @@
  */
 package com.yegor256;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import org.cactoos.set.SetOf;
 import org.hamcrest.MatcherAssert;
@@ -142,24 +140,18 @@ final class TogetherTest {
     @Test
     void startsInRandomOrder() {
         final int threads = 100;
-        final CopyOnWriteArrayList<Integer> seen = new CopyOnWriteArrayList<>();
-        new Together<>(
-            threads,
-            t -> {
-                seen.add(t);
-                return t;
-            }
-        ).asList();
+        final AtomicInteger counter = new AtomicInteger();
         MatcherAssert.assertThat(
             "fails to start them parallel, in random order",
-            seen,
+            new Together<>(
+                threads,
+                t -> counter.getAndIncrement()
+            ).asList(),
             Matchers.not(
-                Matchers.hasToString(
-                    Matchers.containsString(
-                        IntStream.rangeClosed(0, threads - 1)
-                            .mapToObj(String::valueOf)
-                            .collect(Collectors.joining(", "))
-                    )
+                Matchers.contains(
+                    IntStream.range(0, threads)
+                        .boxed()
+                        .toArray(Integer[]::new)
                 )
             )
         );
@@ -168,13 +160,12 @@ final class TogetherTest {
     @Test
     void returnsResultsInCorrectOrder() {
         final int threads = 100;
-        final List<Integer> results = new Together<>(
-            threads,
-            t -> t
-        ).asList();
         MatcherAssert.assertThat(
             "the results should be returned in the order of thread indices",
-            results,
+            new Together<>(
+                threads,
+                t -> t
+            ).asList(),
             Matchers.contains(
                 IntStream.range(0, threads)
                     .boxed()
