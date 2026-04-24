@@ -4,7 +4,7 @@
  */
 
 /**
- * There is only one class {@link com.yegor256.Together} that helps
+ * The main entry point is {@link com.yegor256.Together}, which helps
  * you run a single lambda in multiple threads.
  *
  * @since 0.0.1

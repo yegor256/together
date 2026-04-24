@@ -69,6 +69,88 @@ and makes sure that all of them return `true`. If at least
 one of them returns `false`, the test fails. If at least one of the
 threads throws an exception, the test also fails.
 
+The existing constructors remain unchanged, but you may now make the
+test stronger without changing the original style:
+
+```java
+import java.util.concurrent.TimeUnit;
+
+new Together<>(
+  8,
+  thread -> service.process(thread)
+).repeated(100)
+  .withTimeout(1, TimeUnit.SECONDS)
+  .failFast()
+  .asList();
+```
+
+Use `repeated(...)` when you want to run the same race many times,
+`withTimeout(...)` when you don't want a stuck thread to freeze the test,
+and `failFast()` when you want the remaining threads to be interrupted as
+soon as one execution fails.
+
+When a thread fails, the library now throws `TogetherFailure`, which is still
+an `IllegalArgumentException` for backward compatibility, but it also tells
+you which round failed, which thread failed, whether timeout was exceeded,
+and how long the execution lasted.
+
+Here are a few focused examples.
+
+Repeat the same race many times:
+
+```java
+MatcherAssert.assertThat(
+  new Together<>(
+    4,
+    thread -> cache.get("hello")
+  ).repeated(250),
+  Matchers.everyItem(Matchers.equalTo("world"))
+);
+```
+
+Stop a deadlocked or stuck test after a timeout:
+
+```java
+Assertions.assertThrows(
+  TogetherFailure.class,
+  () -> new Together<>(
+    2,
+    thread -> {
+      Thread.sleep(10_000L);
+      return thread;
+    }
+  ).withTimeout(50L, TimeUnit.MILLISECONDS).asList()
+);
+```
+
+Fail immediately when the first thread breaks:
+
+```java
+Assertions.assertThrows(
+  TogetherFailure.class,
+  () -> new Together<>(
+    8,
+    thread -> service.process(thread)
+  ).failFast().asList()
+);
+```
+
+Inspect the richer failure details:
+
+```java
+final TogetherFailure failure = Assertions.assertThrows(
+  TogetherFailure.class,
+  () -> new Together<>(
+    1,
+    thread -> {
+      throw new IllegalStateException("boom");
+    }
+  ).repeated(10).asList()
+);
+MatcherAssert.assertThat(failure.happenedInRound(0), Matchers.is(true));
+MatcherAssert.assertThat(failure.happenedInThread(0), Matchers.is(true));
+```
+
 `Together` guarantees that all threads start exactly simultaneously,
 thus simulating [race condition] as much as it's possible. This is exactly
 what you need for your tests: making sure your object under test
