@@ -16,14 +16,15 @@ import org.junit.jupiter.api.Test;
  *
  * @since 1.0
  */
-@SuppressWarnings("PMD.UnnecessaryLocalRule")
 final class WatchingTest {
 
     @Test
+    @SuppressWarnings("PMD.CloseResource")
     void collectsResultsFromStartedExecution() {
         final Scenario<Integer> scenario =
             new Scenario<>(new Threads(2), thread -> thread);
-        try (ExecutorService service = scenario.newService()) {
+        final ExecutorService service = scenario.newService();
+        try {
             MatcherAssert.assertThat(
                 "must collect all results",
                 new Watching().collectFrom(
@@ -33,6 +34,8 @@ final class WatchingTest {
                 ),
                 Matchers.contains(0, 1)
             );
+        } finally {
+            new com.yegor256.together.support.Shutdown(service).finish();
         }
     }
 }

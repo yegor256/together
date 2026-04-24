@@ -16,14 +16,15 @@ import org.junit.jupiter.api.Test;
  *
  * @since 1.0
  */
-@SuppressWarnings("PMD.UnnecessaryLocalRule")
 final class ForeverTest {
 
     @Test
+    @SuppressWarnings("PMD.CloseResource")
     void waitsForNextExecutionWithoutTimeout() {
         final Scenario<Integer> scenario =
             new Scenario<>(new Threads(1), thread -> thread + 5);
-        try (ExecutorService service = scenario.newService()) {
+        final ExecutorService service = scenario.newService();
+        try {
             final com.yegor256.together.execution.Started<Integer> started =
                 scenario.startedOn(service);
             started.start();
@@ -34,6 +35,8 @@ final class ForeverTest {
                     .resultsIn(0),
                 Matchers.contains(5)
             );
+        } finally {
+            new com.yegor256.together.support.Shutdown(service).finish();
         }
     }
 }

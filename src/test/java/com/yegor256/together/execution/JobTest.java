@@ -37,10 +37,11 @@ final class JobTest {
     }
 
     @Test
-    @SuppressWarnings("PMD.UnitTestContainsTooManyAsserts")
+    @SuppressWarnings({"PMD.UnitTestContainsTooManyAsserts", "PMD.CloseResource"})
     void waitsForLatchBeforeExecution() throws Exception {
         final CountDownLatch latch = new CountDownLatch(1);
-        try (ExecutorService service = Executors.newSingleThreadExecutor()) {
+        final ExecutorService service = Executors.newSingleThreadExecutor();
+        try {
             final Future<Execution<Integer>> future = service.submit(
                 new Job<>(latch, 3, thread -> thread * 2)
             );
@@ -57,6 +58,8 @@ final class JobTest {
                 results,
                 Matchers.contains(6)
             );
+        } finally {
+            new com.yegor256.together.support.Shutdown(service).finish();
         }
     }
 }

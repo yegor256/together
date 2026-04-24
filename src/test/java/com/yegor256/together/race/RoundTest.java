@@ -14,13 +14,14 @@ import org.junit.jupiter.api.Test;
  *
  * @since 1.0
  */
-@SuppressWarnings("PMD.UnnecessaryLocalRule")
 final class RoundTest {
 
     @Test
+    @SuppressWarnings("PMD.CloseResource")
     void executesOneRound() {
         final Threads threads = new Threads(2);
-        try (ExecutorService service = threads.newService()) {
+        final ExecutorService service = threads.newService();
+        try {
             MatcherAssert.assertThat(
                 "must execute one round only",
                 new Round<>(
@@ -29,6 +30,8 @@ final class RoundTest {
                 ).resultsOn(service, 0),
                 Matchers.contains(0, 1)
             );
+        } finally {
+            new com.yegor256.together.support.Shutdown(service).finish();
         }
     }
 }

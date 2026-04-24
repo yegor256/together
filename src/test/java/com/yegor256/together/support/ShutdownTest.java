@@ -19,20 +19,26 @@ import org.junit.jupiter.api.Test;
 final class ShutdownTest {
 
     @Test
+    @SuppressWarnings("PMD.CloseResource")
     void shutsExecutorDown() {
-        try (ExecutorService service = Executors.newSingleThreadExecutor()) {
+        final ExecutorService service = Executors.newSingleThreadExecutor();
+        try {
             new Shutdown(service).finish();
             MatcherAssert.assertThat(
                 "must shutdown executor",
                 service.isShutdown(),
                 Matchers.is(true)
             );
+        } finally {
+            service.shutdownNow();
         }
     }
 
     @Test
+    @SuppressWarnings("PMD.CloseResource")
     void failsOnInterruptedShutdown() {
-        try (ExecutorService service = Executors.newSingleThreadExecutor()) {
+        final ExecutorService service = Executors.newSingleThreadExecutor();
+        try {
             service.submit(
                 () -> {
                     Thread.sleep(1000L);
@@ -51,6 +57,8 @@ final class ShutdownTest {
                 Matchers.is(true)
             );
             Thread.interrupted();
+        } finally {
+            service.shutdownNow();
         }
     }
 }

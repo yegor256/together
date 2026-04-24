@@ -16,12 +16,13 @@ import org.junit.jupiter.api.Test;
 final class ScenarioTest {
 
     @Test
-    @SuppressWarnings("PMD.UnnecessaryLocalRule")
+    @SuppressWarnings({"PMD.UnnecessaryLocalRule", "PMD.CloseResource"})
     void createsStartedAndCompletedObjects() {
         final Threads threads = new Threads(1);
         final Scenario<Integer> scenario =
             new Scenario<>(threads, thread -> thread + 1);
-        try (java.util.concurrent.ExecutorService service = scenario.newService()) {
+        final java.util.concurrent.ExecutorService service = scenario.newService();
+        try {
             final com.yegor256.together.execution.Started<Integer> started =
                 scenario.startedOn(service);
             started.start();
@@ -30,6 +31,8 @@ final class ScenarioTest {
                 scenario.newCompleted().with(started.next(0)).resultsIn(0),
                 Matchers.contains(1)
             );
+        } finally {
+            new com.yegor256.together.support.Shutdown(service).finish();
         }
     }
 }
