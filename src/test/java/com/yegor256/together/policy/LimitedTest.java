@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Limited}.
- *
  * @since 1.0
  */
 @SuppressWarnings("PMD.UnnecessaryLocalRule")

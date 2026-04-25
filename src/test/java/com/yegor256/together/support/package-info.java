@@ -5,7 +5,6 @@
 
 /**
  * Tests for support objects.
- *
  * @since 1.0
  */
 package com.yegor256.together.support;

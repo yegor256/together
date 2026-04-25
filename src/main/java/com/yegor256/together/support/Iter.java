@@ -10,7 +10,6 @@ import java.util.List;
 
 /**
  * Iterator with informative {@link #toString()}.
- *
  * @param <T> Type of result
  * @since 1.0
  */

@@ -5,7 +5,6 @@
 
 /**
  * Internal bounded contexts for concurrent race execution.
- *
  * @since 1.0
  */
 package com.yegor256.together;

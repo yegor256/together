@@ -13,7 +13,6 @@ import java.util.Map;
 
 /**
  * One execution result.
- *
  * @param <T> Type of result
  * @since 1.0
  */

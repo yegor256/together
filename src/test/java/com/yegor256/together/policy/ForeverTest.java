@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Forever}.
- *
  * @since 1.0
  */
 final class ForeverTest {

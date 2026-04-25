@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Executor shutdown.
- *
  * @since 1.0
  */
 public final class Shutdown {

@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Limited waiting time.
- *
  * @since 1.0
  */
 public final class Limited implements Patience {

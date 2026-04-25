@@ -5,7 +5,6 @@
 
 /**
  * Policies that decide how the race is watched.
- *
  * @since 1.0
  */
 package com.yegor256.together.policy;

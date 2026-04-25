@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Watching policy.
- *
  * @since 1.0
  */
 public final class Watching {

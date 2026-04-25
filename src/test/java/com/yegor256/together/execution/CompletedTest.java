@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Completed}.
- *
  * @since 1.0
  */
 final class CompletedTest {
@@ -38,8 +37,7 @@ final class CompletedTest {
         Assertions.assertThrows(
             TogetherFailure.class,
             () -> new Completed<Integer>(new Threads(1))
-                .with(new Execution<>(0, new IllegalStateException("boom"), 0L))
-                .stopFastIn(
+                .with(new Execution<>(0, new IllegalStateException("boom"), 0L)).stopFastIn(
                     0,
                     new Started<>(
                         new java.util.concurrent.CountDownLatch(0),

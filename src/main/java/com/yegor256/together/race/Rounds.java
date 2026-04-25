@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 
 /**
  * Round numbers.
- *
  * @since 1.0
  */
 public final class Rounds implements Iterable<Integer> {

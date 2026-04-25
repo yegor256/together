@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Timeout deadline.
- *
  * @since 1.0
  */
 public final class Deadline {

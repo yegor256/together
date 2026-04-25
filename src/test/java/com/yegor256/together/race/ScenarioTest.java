@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Scenario}.
- *
  * @since 1.0
  */
 final class ScenarioTest {

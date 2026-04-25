@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Rules}.
- *
  * @since 1.0
  */
 final class RulesTest {
@@ -20,11 +19,10 @@ final class RulesTest {
     void appliesRulesToScenario() {
         MatcherAssert.assertThat(
             "must repeat scenario results",
-            new Rules().repeated(2).withTimeout(1L, TimeUnit.SECONDS).failFast()
-                .resultsOf(
-                    new Scenario<>(new Threads(2), thread -> thread),
-                    new Threads(2).newService()
-                ),
+            new Rules().repeated(2).withTimeout(1L, TimeUnit.SECONDS).failFast().resultsOf(
+                new Scenario<>(new Threads(2), thread -> thread),
+                new Threads(2).newService()
+            ),
             Matchers.contains(0, 1, 0, 1)
         );
     }

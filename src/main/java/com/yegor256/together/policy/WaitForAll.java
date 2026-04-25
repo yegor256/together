@@ -9,7 +9,6 @@ import com.yegor256.together.execution.Started;
 
 /**
  * Keep waiting for all threads.
- *
  * @since 1.0
  */
 public final class WaitForAll implements Reaction {

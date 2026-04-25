@@ -10,7 +10,6 @@ import com.yegor256.together.execution.Started;
 
 /**
  * How long to wait.
- *
  * @since 1.0
  */
 @FunctionalInterface

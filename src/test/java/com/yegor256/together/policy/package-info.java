@@ -5,7 +5,6 @@
 
 /**
  * Tests for policy objects.
- *
  * @since 1.0
  */
 package com.yegor256.together.policy;

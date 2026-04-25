@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Execution}.
- *
  * @since 1.0
  */
 final class ExecutionTest {

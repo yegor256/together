@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Failure context.
- *
  * @since 1.0
  */
 public final class FailureContext {

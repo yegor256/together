@@ -21,7 +21,6 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Started round execution.
- *
  * @param <T> Type of result
  * @since 1.0
  */

@@ -8,7 +8,6 @@ import com.yegor256.TogetherFailure;
 
 /**
  * Raised failure.
- *
  * @since 1.0
  */
 public final class RaisedFailure {

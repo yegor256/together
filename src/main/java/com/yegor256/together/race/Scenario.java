@@ -18,7 +18,6 @@ import java.util.concurrent.Future;
 
 /**
  * Race scenario.
- *
  * @param <T> Type of result
  * @since 1.0
  */

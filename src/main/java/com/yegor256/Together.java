@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Runs lambda function in multiple threads.
- *
  * @param <T> The type of result
  * @since 0.0.1
  */
@@ -93,12 +92,12 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Action to perform.
-     *
      * @param <T> The type of result
      * @since 0.0.1
      */
     @FunctionalInterface
     public interface Action<T> {
+
         /**
          * Apply it.
          * @param thread The thread number

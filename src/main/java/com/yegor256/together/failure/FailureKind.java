@@ -6,7 +6,6 @@ package com.yegor256.together.failure;
 
 /**
  * Failure kind.
- *
  * @since 1.0
  */
 public final class FailureKind {

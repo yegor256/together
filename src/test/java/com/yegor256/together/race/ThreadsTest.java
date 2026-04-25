@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Threads}.
- *
  * @since 1.0
  */
 @SuppressWarnings("PMD.UnitTestContainsTooManyAsserts")

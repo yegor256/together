@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Rules of the race.
- *
  * @since 1.0
  */
 public final class Rules {

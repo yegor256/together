@@ -9,7 +9,6 @@ import com.yegor256.together.execution.Started;
 
 /**
  * Reaction to the next completed execution.
- *
  * @since 1.0
  */
 @FunctionalInterface

@@ -12,7 +12,6 @@ import java.util.Map;
 
 /**
  * Completed executions.
- *
  * @param <T> Type of result
  * @since 1.0
  */

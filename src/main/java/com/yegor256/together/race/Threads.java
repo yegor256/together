@@ -14,7 +14,6 @@ import java.util.concurrent.Executors;
 
 /**
  * Thread numbers.
- *
  * @since 1.0
  */
 public final class Threads {

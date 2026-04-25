@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Rounds}.
- *
  * @since 1.0
  */
 final class RoundsTest {

@@ -9,7 +9,6 @@ import com.yegor256.together.execution.Started;
 
 /**
  * Stop on the first failure.
- *
  * @since 1.0
  */
 public final class StopFast implements Reaction {

@@ -10,7 +10,6 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * One round of the race.
- *
  * @param <T> Type of result
  * @since 1.0
  */

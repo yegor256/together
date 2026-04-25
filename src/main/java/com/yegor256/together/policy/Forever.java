@@ -10,7 +10,6 @@ import com.yegor256.together.execution.Started;
 
 /**
  * Wait forever.
- *
  * @since 1.0
  */
 public final class Forever implements Patience {

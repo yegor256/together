@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link StopFast}.
- *
  * @since 1.0
  */
 final class StopFastTest {

@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Concurrent race.
- *
  * @param <T> Type of result
  * @since 1.0
  */

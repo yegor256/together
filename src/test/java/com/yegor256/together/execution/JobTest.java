@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Job}.
- *
  * @since 1.0
  */
 final class JobTest {

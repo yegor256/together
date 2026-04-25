@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * One concurrent job.
- *
  * @param <T> Type of result
  * @since 1.0
  */

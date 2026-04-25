@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Failure of one concurrent execution.
- *
  * @since 1.0
  */
 @SuppressWarnings("serial")
