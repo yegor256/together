@@ -192,7 +192,7 @@ public final class Started<T> {
         int thread = -1;
         for (final Map.Entry<Integer, Future<Execution<T>>> entry
             : this.futures.entrySet()) {
-            if (entry.getValue().equals(future)) {
+            if (entry.getValue() == future) {
                 thread = entry.getKey();
                 break;
             }

@@ -5,7 +5,7 @@
 package com.yegor256.together.race;
 
 import com.yegor256.together.policy.Watching;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -88,7 +88,7 @@ public final class Rules {
      */
     public <T> List<T> resultsOf(final Scenario<T> scenario,
         final ExecutorService service) {
-        final List<T> results = new LinkedList<>();
+        final List<T> results = new ArrayList<>(0);
         for (final Integer round : this.rounds) {
             results.addAll(
                 new com.yegor256.together.race.Round<>(scenario, this.watching)
