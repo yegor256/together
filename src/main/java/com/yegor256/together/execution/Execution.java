@@ -45,7 +45,6 @@ public final class Execution<T> {
      * @param msec Elapsed
      */
     public Execution(final int number, final T value, final long msec) {
-        // @checkstyle ParameterNumberCheck (1 line)
         this(number, value, null, msec);
     }
 
@@ -56,7 +55,6 @@ public final class Execution<T> {
      * @param msec Elapsed
      */
     public Execution(final int number, final Exception problem, final long msec) {
-        // @checkstyle ParameterNumberCheck (1 line)
         this(number, null, problem, msec);
     }
 
@@ -67,7 +65,6 @@ public final class Execution<T> {
      * @param problem Failure
      * @param msec Elapsed
      */
-    // @checkstyle ParameterNumberCheck (3 lines)
     private Execution(final int number, final T value, final Exception problem,
         final long msec) {
         this.thread = number;

@@ -27,7 +27,6 @@ public final class TogetherFailure extends IllegalArgumentException {
      * @param failure Failure kind
      * @param cause Root cause
      */
-    // @checkstyle ConstructorsCodeFreeCheck (1 line)
     public TogetherFailure(final FailureContext details,
         final FailureKind failure, final Throwable cause) {
         super("", cause);

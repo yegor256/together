@@ -60,7 +60,7 @@ public final class Completed<T> {
      * @return TRUE if yes
      */
     public boolean isIncomplete() {
-        return this.threads.misses(new HashMap<Integer, Execution<?>>(this.done));
+        return this.threads.misses(new HashMap<>(this.done));
     }
 
     /**
@@ -68,7 +68,7 @@ public final class Completed<T> {
      * @return Thread number
      */
     public int missingThread() {
-        return this.threads.firstAbsentFrom(new HashMap<Integer, Execution<?>>(this.done));
+        return this.threads.firstAbsentFrom(new HashMap<>(this.done));
     }
 
     /**
