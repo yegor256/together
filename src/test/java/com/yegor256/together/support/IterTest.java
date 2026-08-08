@@ -4,8 +4,8 @@
  */
 package com.yegor256.together.support;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ final class IterTest {
 
     @Test
     void iteratesAndPrintsItems() {
-        final Iter<Integer> iter = new Iter<>(new ArrayList<>(Arrays.asList(1, 2)));
+        final Iter<Integer> iter = new Iter<>(new LinkedList<>(Arrays.asList(1, 2)));
         MatcherAssert.assertThat(
             "must print all items",
             iter.toString(),
@@ -27,7 +27,7 @@ final class IterTest {
         );
         MatcherAssert.assertThat(
             "must iterate through all items",
-            new ArrayList<>(Arrays.asList(iter.next(), iter.next())),
+            new LinkedList<>(Arrays.asList(iter.next(), iter.next())),
             Matchers.contains(1, 2)
         );
         MatcherAssert.assertThat(

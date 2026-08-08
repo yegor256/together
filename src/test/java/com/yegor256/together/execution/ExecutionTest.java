@@ -40,7 +40,7 @@ final class ExecutionTest {
             TogetherFailure.class,
             () -> new Execution<Integer>(
                 3, new IllegalStateException("boom"), 2L
-            ).complete(5, new java.util.ArrayList<>(1)),
+            ).complete(5, new java.util.ArrayList<Integer>(1)),
             "must convert failure to public exception"
         );
         MatcherAssert.assertThat(

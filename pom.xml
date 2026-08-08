@@ -148,13 +148,6 @@
               <excludes combine.children="append">
                 <exclude>checkstyle:/src/site/resources/.*</exclude>
                 <exclude>duplicatefinder:.*</exclude>
-                <!--
-                PMD's CompareObjectsWithEquals and ErrorProne's UndefinedEquals
-                contradict each other on java.util.concurrent.Future identity
-                comparisons: no form of the code satisfies both.
-                See https://github.com/yegor256/qulice/issues/1717
-                -->
-                <exclude>pmd:.*/src/main/java/com/yegor256/together/execution/Started\.java</exclude>
               </excludes>
             </configuration>
           </plugin>

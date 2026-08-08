@@ -6,7 +6,6 @@ package com.yegor256.together.support;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -38,13 +37,13 @@ final class ShutdownTest {
     @SuppressWarnings("PMD.CloseResource")
     void failsOnInterruptedShutdown() {
         final ExecutorService service = Executors.newSingleThreadExecutor();
-        final Future<Integer> future = service.submit(
-            () -> {
-                Thread.sleep(1000L);
-                return 1;
-            }
-        );
         try {
+            service.submit(
+                () -> {
+                    Thread.sleep(1000L);
+                    return 1;
+                }
+            );
             Thread.currentThread().interrupt();
             Assertions.assertThrows(
                 IllegalArgumentException.class,
@@ -58,7 +57,6 @@ final class ShutdownTest {
             );
             Thread.interrupted();
         } finally {
-            future.cancel(true);
             service.shutdownNow();
         }
     }

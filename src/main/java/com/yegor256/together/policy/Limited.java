@@ -26,6 +26,7 @@ public final class Limited implements Patience {
      * @param tunit Unit
      */
     public Limited(final long timeout, final TimeUnit tunit) {
+        // @checkstyle ConstructorsCodeFreeCheck (1 line)
         this(new Deadline(timeout, tunit));
     }
 

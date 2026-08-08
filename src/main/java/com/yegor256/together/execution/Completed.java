@@ -5,8 +5,8 @@
 package com.yegor256.together.execution;
 
 import com.yegor256.together.race.Threads;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -60,7 +60,7 @@ public final class Completed<T> {
      * @return TRUE if yes
      */
     public boolean isIncomplete() {
-        return this.threads.misses(new HashMap<>(this.done));
+        return this.threads.misses(new HashMap<Integer, Execution<?>>(this.done));
     }
 
     /**
@@ -68,7 +68,7 @@ public final class Completed<T> {
      * @return Thread number
      */
     public int missingThread() {
-        return this.threads.firstAbsentFrom(new HashMap<>(this.done));
+        return this.threads.firstAbsentFrom(new HashMap<Integer, Execution<?>>(this.done));
     }
 
     /**
@@ -88,7 +88,7 @@ public final class Completed<T> {
      * @return Results
      */
     public List<T> resultsIn(final int round) {
-        final List<T> results = new ArrayList<>(this.done.size());
+        final List<T> results = new LinkedList<>();
         this.threads.appendTo(this.done, round, results);
         return results;
     }
