@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 final class ExecutionTest {
 
     @Test
-    @SuppressWarnings("PMD.UnnecessaryLocalRule")
     void placesAndCompletesSuccessfulExecution() {
         final Map<Integer, Execution<Integer>> all = new java.util.TreeMap<>();
         final List<Integer> results = new java.util.ArrayList<>(1);
