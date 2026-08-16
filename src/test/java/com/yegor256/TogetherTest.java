@@ -6,7 +6,6 @@ package com.yegor256;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import org.cactoos.set.SetOf;
@@ -125,21 +124,17 @@ final class TogetherTest {
 
     @Test
     void overlapsThreads() {
-        final AtomicBoolean finished = new AtomicBoolean(false);
+        final CountDownLatch entered = new CountDownLatch(2);
         MatcherAssert.assertThat(
             "fails to start them parallel",
             new Together<>(
                 2,
                 t -> {
-                    if (finished.get()) {
-                        throw new IllegalStateException("why?");
-                    }
-                    Thread.sleep(1L);
-                    finished.set(true);
-                    return t;
+                    entered.countDown();
+                    return entered.await(1L, TimeUnit.MINUTES);
                 }
-            ).asList().size(),
-            Matchers.greaterThan(0)
+            ).asList(),
+            Matchers.not(Matchers.hasItem(Matchers.is(false)))
         );
     }
 
