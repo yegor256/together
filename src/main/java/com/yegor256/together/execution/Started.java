@@ -125,12 +125,6 @@ public final class Started<T> {
         return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - this.begun);
     }
 
-    /**
-     * Wait with timeout.
-     * @param deadline Timeout deadline
-     * @param round Round number
-     * @return Future or NULL
-     */
     private Future<Execution<T>> next(final Deadline deadline, final int round) {
         final Future<Execution<T>> future;
         try {
@@ -148,12 +142,6 @@ public final class Started<T> {
         return future;
     }
 
-    /**
-     * Read execution from future.
-     * @param round Round number
-     * @param future Future
-     * @return Execution
-     */
     private Execution<T> execution(final int round,
         final Future<Execution<T>> future) {
         try {
@@ -183,11 +171,7 @@ public final class Started<T> {
         }
     }
 
-    /**
-     * Thread number of the future.
-     * @param future Future to find
-     * @return Thread number
-     */
+    @SuppressWarnings("ReferenceEquality")
     private int threadOf(final Future<Execution<T>> future) {
         int thread = -1;
         for (final Map.Entry<Integer, Future<Execution<T>>> entry
@@ -200,11 +184,6 @@ public final class Started<T> {
         return thread;
     }
 
-    /**
-     * Root cause of execution failure.
-     * @param exception Failure
-     * @return Cause
-     */
     private static Throwable reasonOf(final ExecutionException exception) {
         Throwable reason = exception;
         if (exception.getCause() != null) {
@@ -213,13 +192,6 @@ public final class Started<T> {
         return reason;
     }
 
-    /**
-     * Create public failure.
-     * @param context Failure context
-     * @param timeout Whether timeout happened
-     * @param cause Root cause
-     * @return Failure
-     */
     private static TogetherFailure failure(final FailureContext context,
         final boolean timeout, final Throwable cause) {
         return new RaisedFailure(context, new FailureKind(timeout, cause.getMessage()))

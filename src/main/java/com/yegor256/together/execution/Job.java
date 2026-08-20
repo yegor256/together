@@ -54,11 +54,6 @@ public final class Job<T> implements Callable<Execution<T>> {
         );
     }
 
-    /**
-     * Elapsed time in milliseconds.
-     * @param start Start time
-     * @return Milliseconds
-     */
     private static long elapsed(final long start) {
         return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start);
     }
