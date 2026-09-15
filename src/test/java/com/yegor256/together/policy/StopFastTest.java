@@ -10,6 +10,7 @@ import com.yegor256.together.execution.Execution;
 import com.yegor256.together.execution.Started;
 import com.yegor256.together.race.Threads;
 import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.Executors;
 import org.junit.jupiter.api.Assertions;
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link StopFast}.
+ *
  * @since 1.0
  */
 final class StopFastTest {
@@ -28,7 +30,7 @@ final class StopFastTest {
             () -> new StopFast().reactTo(
                 0,
                 new Started<>(
-                    new java.util.concurrent.CountDownLatch(0),
+                    new CountDownLatch(0),
                     new ExecutorCompletionService<>(Executors.newSingleThreadExecutor()),
                     new HashMap<>()
                 ),

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Shutdown}.
+ *
  * @since 1.0
  */
 final class ShutdownTest {

@@ -6,6 +6,7 @@ package com.yegor256.together.policy;
 
 import com.yegor256.together.race.Scenario;
 import com.yegor256.together.race.Threads;
+import com.yegor256.together.support.Shutdown;
 import java.util.concurrent.ExecutorService;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Watching}.
+ *
  * @since 1.0
  */
 final class WatchingTest {
@@ -34,7 +36,7 @@ final class WatchingTest {
                 Matchers.contains(0, 1)
             );
         } finally {
-            new com.yegor256.together.support.Shutdown(service).finish();
+            new Shutdown(service).finish();
         }
     }
 }

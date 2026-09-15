@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Failure description.
+ *
  * @since 1.0
  */
 public final class FailureDescription {
@@ -24,6 +25,7 @@ public final class FailureDescription {
 
     /**
      * Ctor.
+     *
      * @param details Failure context
      * @param failure Failure kind
      */
@@ -35,6 +37,7 @@ public final class FailureDescription {
 
     /**
      * Message text.
+     *
      * @return Message
      */
     public String messageText() {
@@ -43,6 +46,7 @@ public final class FailureDescription {
 
     /**
      * Whether timeout caused this failure.
+     *
      * @return TRUE if timeout happened
      */
     public boolean causedByTimeout() {
@@ -51,6 +55,7 @@ public final class FailureDescription {
 
     /**
      * Whether it happened in this round.
+     *
      * @param number Round number
      * @return TRUE if yes
      */
@@ -60,6 +65,7 @@ public final class FailureDescription {
 
     /**
      * Whether it happened in this thread.
+     *
      * @param number Thread number
      * @return TRUE if yes
      */
@@ -69,6 +75,7 @@ public final class FailureDescription {
 
     /**
      * Whether it lasted at least this long.
+     *
      * @param duration Duration
      * @param unit Time unit
      * @return TRUE if yes

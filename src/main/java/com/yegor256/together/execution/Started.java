@@ -21,6 +21,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Started round execution.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
@@ -48,6 +49,7 @@ public final class Started<T> {
 
     /**
      * Ctor.
+     *
      * @param shared Shared latch
      * @param service Completion service
      * @param all Futures
@@ -70,6 +72,7 @@ public final class Started<T> {
 
     /**
      * Wait forever for next execution.
+     *
      * @param round Round number
      * @return Execution
      */
@@ -89,6 +92,7 @@ public final class Started<T> {
 
     /**
      * Wait with timeout.
+     *
      * @param round Round number
      * @param deadline Timeout deadline
      * @param pending Missing thread
@@ -119,6 +123,7 @@ public final class Started<T> {
 
     /**
      * Elapsed time in milliseconds.
+     *
      * @return Milliseconds
      */
     public long elapsed() {

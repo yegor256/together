@@ -8,6 +8,7 @@ import com.yegor256.TogetherFailure;
 
 /**
  * Raised failure.
+ *
  * @since 1.0
  */
 public final class RaisedFailure {
@@ -24,6 +25,7 @@ public final class RaisedFailure {
 
     /**
      * Ctor.
+     *
      * @param details Failure context
      * @param failure Failure kind
      */
@@ -34,6 +36,7 @@ public final class RaisedFailure {
 
     /**
      * Convert to public failure.
+     *
      * @param cause Root cause
      * @return Failure
      */

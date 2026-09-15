@@ -6,14 +6,16 @@ package com.yegor256.together.support;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Iterator with informative {@link #toString()}.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
-public final class Iter<T> implements java.util.Iterator<T> {
+public final class Iter<T> implements Iterator<T> {
 
     /**
      * Items.
@@ -27,6 +29,7 @@ public final class Iter<T> implements java.util.Iterator<T> {
 
     /**
      * Ctor.
+     *
      * @param all Items
      */
     public Iter(final Collection<T> all) {

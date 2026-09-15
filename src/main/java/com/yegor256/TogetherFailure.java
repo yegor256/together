@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Failure of one concurrent execution.
+ *
  * @since 1.0
  */
 @SuppressWarnings("serial")
@@ -23,6 +24,7 @@ public final class TogetherFailure extends IllegalArgumentException {
 
     /**
      * Ctor.
+     *
      * @param details Failure context
      * @param failure Failure kind
      * @param cause Root cause
@@ -30,13 +32,14 @@ public final class TogetherFailure extends IllegalArgumentException {
     public TogetherFailure(final FailureContext details,
         final FailureKind failure, final Throwable cause) {
         super("", cause);
-        this.description = new com.yegor256.together.failure.FailureDescription(
+        this.description = new FailureDescription(
             details, failure
         );
     }
 
     /**
      * Whether timeout caused this failure.
+     *
      * @return TRUE if timeout happened
      */
     public boolean causedByTimeout() {
@@ -45,6 +48,7 @@ public final class TogetherFailure extends IllegalArgumentException {
 
     /**
      * Whether it happened in this round.
+     *
      * @param number Round number
      * @return TRUE if yes
      */
@@ -54,6 +58,7 @@ public final class TogetherFailure extends IllegalArgumentException {
 
     /**
      * Whether it happened in this thread.
+     *
      * @param number Thread number
      * @return TRUE if yes
      */
@@ -63,6 +68,7 @@ public final class TogetherFailure extends IllegalArgumentException {
 
     /**
      * Whether it lasted at least this long.
+     *
      * @param duration Duration
      * @param unit Time unit
      * @return TRUE if yes

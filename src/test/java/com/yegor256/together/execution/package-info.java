@@ -5,6 +5,7 @@
 
 /**
  * Tests for execution objects.
+ *
  * @since 1.0
  */
 package com.yegor256.together.execution;

@@ -4,8 +4,10 @@
  */
 package com.yegor256.together.policy;
 
+import com.yegor256.together.execution.Started;
 import com.yegor256.together.race.Scenario;
 import com.yegor256.together.race.Threads;
+import com.yegor256.together.support.Shutdown;
 import java.util.concurrent.ExecutorService;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Forever}.
+ *
  * @since 1.0
  */
 final class ForeverTest {
@@ -24,7 +27,7 @@ final class ForeverTest {
             new Scenario<>(new Threads(1), thread -> thread + 5);
         final ExecutorService service = scenario.newService();
         try {
-            final com.yegor256.together.execution.Started<Integer> started =
+            final Started<Integer> started =
                 scenario.startedOn(service);
             started.start();
             MatcherAssert.assertThat(
@@ -35,7 +38,7 @@ final class ForeverTest {
                 Matchers.contains(5)
             );
         } finally {
-            new com.yegor256.together.support.Shutdown(service).finish();
+            new Shutdown(service).finish();
         }
     }
 }

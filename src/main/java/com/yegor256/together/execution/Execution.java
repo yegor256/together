@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * One execution result.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
@@ -40,6 +41,7 @@ public final class Execution<T> {
 
     /**
      * Ctor for success.
+     *
      * @param number Thread number
      * @param value Result
      * @param msec Elapsed
@@ -50,6 +52,7 @@ public final class Execution<T> {
 
     /**
      * Ctor for failure.
+     *
      * @param number Thread number
      * @param problem Failure
      * @param msec Elapsed
@@ -60,6 +63,7 @@ public final class Execution<T> {
 
     /**
      * Private ctor.
+     *
      * @param number Thread number
      * @param value Result
      * @param problem Failure
@@ -75,6 +79,7 @@ public final class Execution<T> {
 
     /**
      * Put into the map.
+     *
      * @param all Mutable map
      */
     public void placeInto(final Map<Integer, Execution<T>> all) {
@@ -83,6 +88,7 @@ public final class Execution<T> {
 
     /**
      * Stop fast if this execution failed.
+     *
      * @param round Round number
      * @param started Started execution
      */
@@ -95,6 +101,7 @@ public final class Execution<T> {
 
     /**
      * Complete the round.
+     *
      * @param round Round number
      * @param results Mutable results
      */
@@ -107,6 +114,7 @@ public final class Execution<T> {
 
     /**
      * Convert to public failure.
+     *
      * @param round Round number
      * @return Failure
      */

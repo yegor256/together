@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * One round of the race.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
@@ -27,6 +28,7 @@ public final class Round<T> {
 
     /**
      * Ctor.
+     *
      * @param origin Scenario
      * @param policy Watching policy
      */
@@ -37,6 +39,7 @@ public final class Round<T> {
 
     /**
      * Execute the round.
+     *
      * @param service Executor service
      * @param number Round number
      * @return Results

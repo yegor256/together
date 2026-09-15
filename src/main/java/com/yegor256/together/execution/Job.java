@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * One concurrent job.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
@@ -33,6 +34,7 @@ public final class Job<T> implements Callable<Execution<T>> {
 
     /**
      * Ctor.
+     *
      * @param shared Shared latch
      * @param number Thread number
      * @param job Action

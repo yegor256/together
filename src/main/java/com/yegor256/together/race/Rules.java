@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Rules of the race.
+ *
  * @since 1.0
  */
 public final class Rules {
@@ -31,13 +32,14 @@ public final class Rules {
      */
     public Rules() {
         this(
-            new com.yegor256.together.race.Rounds(1),
-            new com.yegor256.together.policy.Watching()
+            new Rounds(1),
+            new Watching()
         );
     }
 
     /**
      * Private ctor.
+     *
      * @param every Rounds
      * @param policy Watching policy
      */
@@ -48,17 +50,19 @@ public final class Rules {
 
     /**
      * Repeat more times.
+     *
      * @param total Number of rounds
      * @return New rules
      */
     public Rules repeated(final int total) {
         return new com.yegor256.together.race.Rules(
-            new com.yegor256.together.race.Rounds(total), this.watching
+            new Rounds(total), this.watching
         );
     }
 
     /**
      * Limit time.
+     *
      * @param limit Timeout
      * @param unit Unit
      * @return New rules
@@ -71,6 +75,7 @@ public final class Rules {
 
     /**
      * Stop fast.
+     *
      * @return New rules
      */
     public Rules failFast() {
@@ -81,6 +86,7 @@ public final class Rules {
 
     /**
      * Execute all rounds.
+     *
      * @param scenario Scenario
      * @param service Executor service
      * @param <T> Type of result
@@ -91,7 +97,7 @@ public final class Rules {
         final List<T> results = new ArrayList<>(0);
         for (final Integer round : this.rounds) {
             results.addAll(
-                new com.yegor256.together.race.Round<>(scenario, this.watching)
+                new Round<>(scenario, this.watching)
                     .resultsOn(service, round)
             );
         }

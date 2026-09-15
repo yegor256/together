@@ -65,6 +65,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Ctor.
+     *
      * @param act The action
      */
     public Together(final Together.Action<T> act) {
@@ -73,6 +74,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Ctor.
+     *
      * @param total The number of threads
      * @param act The action
      */
@@ -82,6 +84,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Private ctor.
+     *
      * @param origin Race to execute
      */
     private Together(final Race<T> origin) {
@@ -90,6 +93,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Repeat each race condition many times.
+     *
      * @param total Number of rounds
      * @return New instance
      * @since 1.0
@@ -100,6 +104,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Limit the execution time of every round.
+     *
      * @param limit Timeout limit
      * @param unit Timeout unit
      * @return New instance
@@ -111,6 +116,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Stop waiting as soon as one thread fails.
+     *
      * @return New instance
      * @since 1.0
      */
@@ -125,6 +131,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Turn it into a list.
+     *
      * @return The list
      * @since 0.0.3
      */
@@ -134,6 +141,7 @@ public final class Together<T> implements Iterable<T> {
 
     /**
      * Action to perform.
+     *
      * @param <T> The type of result
      * @since 0.0.1
      */
@@ -142,6 +150,7 @@ public final class Together<T> implements Iterable<T> {
 
         /**
          * Apply it.
+         *
          * @param thread The thread number
          * @return The result
          * @throws Exception If fails

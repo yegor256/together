@@ -10,6 +10,7 @@ import com.yegor256.together.execution.Started;
 
 /**
  * How long to wait.
+ *
  * @since 1.0
  */
 @FunctionalInterface
@@ -17,6 +18,7 @@ public interface Patience {
 
     /**
      * Wait for the next execution.
+     *
      * @param completed Completed executions
      * @param round Round number
      * @param started Started execution

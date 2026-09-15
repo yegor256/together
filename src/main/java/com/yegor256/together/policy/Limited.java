@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Limited waiting time.
+ *
  * @since 1.0
  */
 public final class Limited implements Patience {
@@ -22,6 +23,7 @@ public final class Limited implements Patience {
 
     /**
      * Ctor.
+     *
      * @param timeout Timeout
      * @param tunit Unit
      */
@@ -31,6 +33,7 @@ public final class Limited implements Patience {
 
     /**
      * Private ctor.
+     *
      * @param time Deadline
      */
     private Limited(final Deadline time) {

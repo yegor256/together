@@ -9,9 +9,17 @@ import com.yegor256.together.execution.Started;
 
 /**
  * Stop on the first failure.
+ *
  * @since 1.0
  */
 public final class StopFast implements Reaction {
+
+    /**
+     * Constructor.
+     */
+    public StopFast() {
+        // Nothing to initialize.
+    }
 
     @Override
     public <T> void reactTo(final int round, final Started<T> started,

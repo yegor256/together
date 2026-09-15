@@ -4,6 +4,8 @@
  */
 package com.yegor256;
 
+import com.yegor256.together.failure.FailureContext;
+import com.yegor256.together.failure.FailureKind;
 import java.util.concurrent.TimeUnit;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link TogetherFailure}.
+ *
  * @since 1.0
  */
 final class TogetherFailureTest {
@@ -23,8 +26,8 @@ final class TogetherFailureTest {
     /**
      * Failure context.
      */
-    private static final com.yegor256.together.failure.FailureContext CONTEXT =
-        new com.yegor256.together.failure.FailureContext(2, 7, 15L);
+    private static final FailureContext CONTEXT =
+        new FailureContext(2, 7, 15L);
 
     @Test
     void recognizesTimeout() {
@@ -32,7 +35,7 @@ final class TogetherFailureTest {
             "must recognize timeout",
             new TogetherFailure(
                 TogetherFailureTest.CONTEXT,
-                new com.yegor256.together.failure.FailureKind(
+                new FailureKind(
                     true, TogetherFailureTest.TEXT
                 ),
                 new IllegalStateException(TogetherFailureTest.TEXT)
@@ -47,7 +50,7 @@ final class TogetherFailureTest {
             "must recognize round",
             new TogetherFailure(
                 TogetherFailureTest.CONTEXT,
-                new com.yegor256.together.failure.FailureKind(
+                new FailureKind(
                     true, TogetherFailureTest.TEXT
                 ),
                 new IllegalStateException(TogetherFailureTest.TEXT)
@@ -62,7 +65,7 @@ final class TogetherFailureTest {
             "must recognize thread",
             new TogetherFailure(
                 TogetherFailureTest.CONTEXT,
-                new com.yegor256.together.failure.FailureKind(
+                new FailureKind(
                     true, TogetherFailureTest.TEXT
                 ),
                 new IllegalStateException(TogetherFailureTest.TEXT)
@@ -77,7 +80,7 @@ final class TogetherFailureTest {
             "must compare elapsed time",
             new TogetherFailure(
                 TogetherFailureTest.CONTEXT,
-                new com.yegor256.together.failure.FailureKind(
+                new FailureKind(
                     true, TogetherFailureTest.TEXT
                 ),
                 new IllegalStateException(TogetherFailureTest.TEXT)
@@ -90,7 +93,7 @@ final class TogetherFailureTest {
     void rejectsDifferentFailureLocation() {
         final TogetherFailure failure = new TogetherFailure(
             TogetherFailureTest.CONTEXT,
-            new com.yegor256.together.failure.FailureKind(false, (String) null),
+            new FailureKind(false, (String) null),
             new IllegalStateException(TogetherFailureTest.TEXT)
         );
         MatcherAssert.assertThat(

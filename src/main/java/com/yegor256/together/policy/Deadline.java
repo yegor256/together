@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Timeout deadline.
+ *
  * @since 1.0
  */
 public final class Deadline {
@@ -24,6 +25,7 @@ public final class Deadline {
 
     /**
      * Ctor.
+     *
      * @param timeout Timeout
      * @param tunit Time unit
      */
@@ -40,6 +42,7 @@ public final class Deadline {
 
     /**
      * Remaining timeout.
+     *
      * @param start Start time
      * @return Remaining timeout
      */
@@ -55,6 +58,7 @@ public final class Deadline {
 
     /**
      * Time unit.
+     *
      * @return Unit
      */
     public TimeUnit timeUnit() {

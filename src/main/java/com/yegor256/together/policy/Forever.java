@@ -10,9 +10,17 @@ import com.yegor256.together.execution.Started;
 
 /**
  * Wait forever.
+ *
  * @since 1.0
  */
 public final class Forever implements Patience {
+
+    /**
+     * Constructor.
+     */
+    public Forever() {
+        // Nothing to initialize.
+    }
 
     @Override
     public <T> Execution<T> waitFor(final Completed<T> completed, final int round,

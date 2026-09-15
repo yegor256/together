@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Completed executions.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
@@ -29,6 +30,7 @@ public final class Completed<T> {
 
     /**
      * Ctor.
+     *
      * @param all Threads
      */
     public Completed(final Threads all) {
@@ -37,6 +39,7 @@ public final class Completed<T> {
 
     /**
      * Private ctor.
+     *
      * @param all Threads
      * @param map Completed executions
      */
@@ -47,6 +50,7 @@ public final class Completed<T> {
 
     /**
      * Add one execution.
+     *
      * @param execution Next execution
      * @return This collector
      */
@@ -57,6 +61,7 @@ public final class Completed<T> {
 
     /**
      * Whether more executions are expected.
+     *
      * @return TRUE if yes
      */
     public boolean isIncomplete() {
@@ -65,6 +70,7 @@ public final class Completed<T> {
 
     /**
      * Missing thread number.
+     *
      * @return Thread number
      */
     public int missingThread() {
@@ -73,6 +79,7 @@ public final class Completed<T> {
 
     /**
      * Stop if any failure already happened.
+     *
      * @param round Round number
      * @param started Started execution
      */
@@ -84,6 +91,7 @@ public final class Completed<T> {
 
     /**
      * Final results.
+     *
      * @param round Round number
      * @return Results
      */

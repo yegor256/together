@@ -14,6 +14,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Thread numbers.
+ *
  * @since 1.0
  */
 public final class Threads {
@@ -25,6 +26,7 @@ public final class Threads {
 
     /**
      * Ctor.
+     *
      * @param count Number of threads
      */
     public Threads(final int count) {
@@ -33,6 +35,7 @@ public final class Threads {
 
     /**
      * Create executor service.
+     *
      * @return Service
      */
     public ExecutorService newService() {
@@ -41,6 +44,7 @@ public final class Threads {
 
     /**
      * Copy itself.
+     *
      * @return Copy
      */
     public Threads copy() {
@@ -49,6 +53,7 @@ public final class Threads {
 
     /**
      * Thread numbers in random order.
+     *
      * @return Numbers
      */
     public Iterable<Integer> inRandomOrder() {
@@ -62,6 +67,7 @@ public final class Threads {
 
     /**
      * Whether some threads are still missing.
+     *
      * @param done Completed executions
      * @return TRUE if some are missing
      */
@@ -71,6 +77,7 @@ public final class Threads {
 
     /**
      * Find first absent thread.
+     *
      * @param done Completed executions
      * @return Missing thread
      */
@@ -87,6 +94,7 @@ public final class Threads {
 
     /**
      * Add all results in order.
+     *
      * @param done Completed executions
      * @param round Round number
      * @param results Mutable results

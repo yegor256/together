@@ -5,8 +5,10 @@
 package com.yegor256.together.policy;
 
 import com.yegor256.TogetherFailure;
+import com.yegor256.together.execution.Started;
 import com.yegor256.together.race.Scenario;
 import com.yegor256.together.race.Threads;
+import com.yegor256.together.support.Shutdown;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.hamcrest.MatcherAssert;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Limited}.
+ *
  * @since 1.0
  */
 @SuppressWarnings("PMD.UnnecessaryLocalRule")
@@ -33,7 +36,7 @@ final class LimitedTest {
         );
         final ExecutorService service = scenario.newService();
         try {
-            final com.yegor256.together.execution.Started<Integer> started =
+            final Started<Integer> started =
                 scenario.startedOn(service);
             started.start();
             final TogetherFailure failure = Assertions.assertThrows(
@@ -49,7 +52,7 @@ final class LimitedTest {
                 Matchers.is(true)
             );
         } finally {
-            new com.yegor256.together.support.Shutdown(service).finish();
+            new Shutdown(service).finish();
         }
     }
 

@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 /**
  * Round numbers.
+ *
  * @since 1.0
  */
 public final class Rounds implements Iterable<Integer> {
@@ -20,6 +21,7 @@ public final class Rounds implements Iterable<Integer> {
 
     /**
      * Ctor.
+     *
      * @param count Total rounds
      */
     public Rounds(final int count) {

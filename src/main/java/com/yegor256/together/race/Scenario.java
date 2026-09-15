@@ -18,6 +18,7 @@ import java.util.concurrent.Future;
 
 /**
  * Race scenario.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
@@ -35,6 +36,7 @@ public final class Scenario<T> {
 
     /**
      * Ctor.
+     *
      * @param total Threads
      * @param job Action
      */
@@ -46,6 +48,7 @@ public final class Scenario<T> {
 
     /**
      * New service.
+     *
      * @return Executor service
      */
     public ExecutorService newService() {
@@ -54,6 +57,7 @@ public final class Scenario<T> {
 
     /**
      * Submit all jobs.
+     *
      * @param service Executor service
      * @return Started execution
      */
@@ -73,6 +77,7 @@ public final class Scenario<T> {
 
     /**
      * New completion collector.
+     *
      * @return Collector
      */
     public Completed<T> newCompleted() {

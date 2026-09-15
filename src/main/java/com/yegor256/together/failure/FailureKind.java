@@ -6,6 +6,7 @@ package com.yegor256.together.failure;
 
 /**
  * Failure kind.
+ *
  * @since 1.0
  */
 public final class FailureKind {
@@ -22,6 +23,7 @@ public final class FailureKind {
 
     /**
      * Ctor.
+     *
      * @param exceeded Whether timeout happened
      * @param text Root message
      */
@@ -32,6 +34,7 @@ public final class FailureKind {
 
     /**
      * Whether timeout caused this failure.
+     *
      * @return TRUE if timeout happened
      */
     public boolean causedByTimeout() {
@@ -40,6 +43,7 @@ public final class FailureKind {
 
     /**
      * Whether the cause has message.
+     *
      * @return TRUE if it has one
      */
     public boolean hasMessage() {
@@ -48,6 +52,7 @@ public final class FailureKind {
 
     /**
      * Message text.
+     *
      * @return Message
      */
     public String messageText() {

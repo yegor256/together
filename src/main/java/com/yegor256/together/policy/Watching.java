@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Watching policy.
+ *
  * @since 1.0
  */
 public final class Watching {
@@ -30,13 +31,14 @@ public final class Watching {
      */
     public Watching() {
         this(
-            new com.yegor256.together.policy.Forever(),
-            new com.yegor256.together.policy.WaitForAll()
+            new Forever(),
+            new WaitForAll()
         );
     }
 
     /**
      * Private ctor.
+     *
      * @param wait Patience
      * @param react Reaction
      */
@@ -47,28 +49,31 @@ public final class Watching {
 
     /**
      * Add timeout.
+     *
      * @param limit Timeout
      * @param unit Unit
      * @return New policy
      */
     public Watching withTimeout(final long limit, final TimeUnit unit) {
         return new com.yegor256.together.policy.Watching(
-            new com.yegor256.together.policy.Limited(limit, unit), this.reaction
+            new Limited(limit, unit), this.reaction
         );
     }
 
     /**
      * Stop fast.
+     *
      * @return New policy
      */
     public Watching failFast() {
         return new com.yegor256.together.policy.Watching(
-            this.patience, new com.yegor256.together.policy.StopFast()
+            this.patience, new StopFast()
         );
     }
 
     /**
      * Collect all results.
+     *
      * @param round Round number
      * @param completed Completed executions
      * @param started Started execution

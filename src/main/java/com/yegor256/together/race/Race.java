@@ -5,6 +5,8 @@
 package com.yegor256.together.race;
 
 import com.yegor256.Together;
+import com.yegor256.together.support.Iter;
+import com.yegor256.together.support.Shutdown;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -12,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Concurrent race.
+ *
  * @param <T> Type of result
  * @since 1.0
  */
@@ -35,6 +38,7 @@ public final class Race<T> implements Iterable<T> {
 
     /**
      * Ctor.
+     *
      * @param action Action
      */
     public Race(final Together.Action<T> action) {
@@ -43,6 +47,7 @@ public final class Race<T> implements Iterable<T> {
 
     /**
      * Ctor.
+     *
      * @param total Threads
      * @param action Action
      */
@@ -52,6 +57,7 @@ public final class Race<T> implements Iterable<T> {
 
     /**
      * Private ctor.
+     *
      * @param origin Scenario
      * @param law Rules
      */
@@ -62,6 +68,7 @@ public final class Race<T> implements Iterable<T> {
 
     /**
      * Repeat it.
+     *
      * @param total Rounds
      * @return New race
      */
@@ -73,6 +80,7 @@ public final class Race<T> implements Iterable<T> {
 
     /**
      * Limit its duration.
+     *
      * @param limit Timeout
      * @param unit Unit
      * @return New race
@@ -85,6 +93,7 @@ public final class Race<T> implements Iterable<T> {
 
     /**
      * Stop fast.
+     *
      * @return New race
      */
     public Race<T> failFast() {
@@ -95,11 +104,12 @@ public final class Race<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new com.yegor256.together.support.Iter<>(this.asList());
+        return new Iter<>(this.asList());
     }
 
     /**
      * Convert to list.
+     *
      * @return Results
      */
     public List<T> asList() {
@@ -107,7 +117,7 @@ public final class Race<T> implements Iterable<T> {
         try {
             return this.rules.resultsOf(this.scenario, service);
         } finally {
-            new com.yegor256.together.support.Shutdown(service).finish();
+            new Shutdown(service).finish();
         }
     }
 }

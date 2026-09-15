@@ -5,6 +5,7 @@
 
 /**
  * Tests for the main class.
+ *
  * @since 0.0.1
  */
 package com.yegor256;

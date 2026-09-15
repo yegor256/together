@@ -4,6 +4,8 @@
  */
 package com.yegor256.together.execution;
 
+import com.yegor256.together.support.Shutdown;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -15,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Job}.
+ *
  * @since 1.0
  */
 final class JobTest {
@@ -26,7 +29,7 @@ final class JobTest {
             3,
             thread -> thread * 2
         );
-        final List<Integer> results = new java.util.ArrayList<>(1);
+        final List<Integer> results = new ArrayList<>(1);
         job.call().complete(0, results);
         MatcherAssert.assertThat(
             "must execute action result",
@@ -50,7 +53,7 @@ final class JobTest {
                 Matchers.is(false)
             );
             latch.countDown();
-            final List<Integer> results = new java.util.ArrayList<>(1);
+            final List<Integer> results = new ArrayList<>(1);
             future.get().complete(0, results);
             MatcherAssert.assertThat(
                 "must execute after latch release",
@@ -58,7 +61,7 @@ final class JobTest {
                 Matchers.contains(6)
             );
         } finally {
-            new com.yegor256.together.support.Shutdown(service).finish();
+            new Shutdown(service).finish();
         }
     }
 }

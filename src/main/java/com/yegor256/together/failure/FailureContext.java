@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Failure context.
+ *
  * @since 1.0
  */
 public final class FailureContext {
@@ -29,6 +30,7 @@ public final class FailureContext {
 
     /**
      * Ctor.
+     *
      * @param when Round number
      * @param threadnum Thread number
      * @param msec Elapsed time
@@ -41,6 +43,7 @@ public final class FailureContext {
 
     /**
      * Whether it happened in this round.
+     *
      * @param number Round number
      * @return TRUE if yes
      */
@@ -50,6 +53,7 @@ public final class FailureContext {
 
     /**
      * Whether it happened in this thread.
+     *
      * @param number Thread number
      * @return TRUE if yes
      */
@@ -59,6 +63,7 @@ public final class FailureContext {
 
     /**
      * Whether it lasted at least this long.
+     *
      * @param duration Duration
      * @param unit Time unit
      * @return TRUE if yes
@@ -69,6 +74,7 @@ public final class FailureContext {
 
     /**
      * Build failure message.
+     *
      * @param kind Failure kind
      * @return Message
      */

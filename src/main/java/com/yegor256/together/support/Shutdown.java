@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Executor shutdown.
+ *
  * @since 1.0
  */
 public final class Shutdown {
@@ -20,6 +21,7 @@ public final class Shutdown {
 
     /**
      * Ctor.
+     *
      * @param origin Service
      */
     public Shutdown(final ExecutorService origin) {

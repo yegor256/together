@@ -9,6 +9,7 @@ import com.yegor256.together.execution.Started;
 
 /**
  * Reaction to the next completed execution.
+ *
  * @since 1.0
  */
 @FunctionalInterface
@@ -16,6 +17,7 @@ public interface Reaction {
 
     /**
      * React to the next state.
+     *
      * @param round Round number
      * @param started Started execution
      * @param completed Completed executions
