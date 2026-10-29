@@ -149,8 +149,9 @@ public final class Started<T> {
 
     private Execution<T> execution(final int round,
         final Future<Execution<T>> future) {
+        Execution<T> result;
         try {
-            return future.get();
+            result = future.get();
         } catch (final InterruptedException ex) {
             Thread.currentThread().interrupt();
             this.stop();
@@ -160,11 +161,8 @@ public final class Started<T> {
                 ex
             );
         } catch (final ExecutionException ex) {
-            this.stop();
-            throw Started.failure(
-                new FailureContext(round, this.threadOf(future), this.elapsed()),
-                false,
-                Started.reasonOf(ex)
+            result = new Execution<>(
+                this.threadOf(future), Started.reasonOf(ex), this.elapsed()
             );
         } catch (final CancellationException ex) {
             this.stop();
@@ -174,6 +172,7 @@ public final class Started<T> {
                 ex
             );
         }
+        return result;
     }
 
     @SuppressWarnings("ReferenceEquality")
@@ -189,10 +188,10 @@ public final class Started<T> {
         return thread;
     }
 
-    private static Throwable reasonOf(final ExecutionException exception) {
-        Throwable reason = exception;
-        if (exception.getCause() != null) {
-            reason = exception.getCause();
+    private static Exception reasonOf(final ExecutionException exception) {
+        Exception reason = exception;
+        if (exception.getCause() instanceof Exception) {
+            reason = (Exception) exception.getCause();
         }
         return reason;
     }
