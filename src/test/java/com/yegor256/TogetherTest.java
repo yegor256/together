@@ -6,6 +6,7 @@ package com.yegor256;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import org.cactoos.set.SetOf;
@@ -237,6 +238,51 @@ final class TogetherTest {
         MatcherAssert.assertThat(
             "must interrupt the remaining thread",
             interrupted.await(1L, TimeUnit.SECONDS),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
+    @SuppressWarnings("PMD.UnitTestContainsTooManyAsserts")
+    void waitsForOtherThreadsWhenNotFailingFast() {
+        final CountDownLatch entered = new CountDownLatch(1);
+        final AtomicBoolean interrupted = new AtomicBoolean();
+        final AtomicInteger finished = new AtomicInteger();
+        final TogetherFailure failure = Assertions.assertThrows(
+            TogetherFailure.class,
+            () -> new Together<>(
+                2,
+                t -> {
+                    if (t == 0) {
+                        entered.await(1L, TimeUnit.SECONDS);
+                        throw new IllegalStateException("boom");
+                    }
+                    entered.countDown();
+                    try {
+                        Thread.sleep(300L);
+                    } catch (final InterruptedException ex) {
+                        interrupted.set(true);
+                        throw ex;
+                    }
+                    finished.incrementAndGet();
+                    return t;
+                }
+            ).asList(),
+            "must still report the failure"
+        );
+        MatcherAssert.assertThat(
+            "must not interrupt the surviving thread without failFast()",
+            interrupted.get(),
+            Matchers.is(false)
+        );
+        MatcherAssert.assertThat(
+            "must let the surviving thread finish",
+            finished.get(),
+            Matchers.equalTo(1)
+        );
+        MatcherAssert.assertThat(
+            "must blame the thread that actually threw",
+            failure.happenedInThread(0),
             Matchers.is(true)
         );
     }
