@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  *
  * <p>Use it like this, in your JUnit5 test (with Hamcrest):</p>
  *
- * <code><pre> import org.hamcrest.MatcherAssert;
+ * <pre> import org.hamcrest.MatcherAssert;
  * import org.hamcrest.Matchers;
  * import org.junit.jupiter.api.Test;
  * import org.junit.jupiter.api.io.TempDir;
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  *       Matchers.not(Matchers.hasItem(Matchers.is(false)))
  *     );
  *   }
- * }</pre></code>
+ * }</pre>
  *
  * <p>Here, the {@link Together} class will run the "job" in multiple threads
  * and will make sure that all of them return {@code true}. If at least
