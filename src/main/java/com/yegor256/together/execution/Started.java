@@ -188,10 +188,10 @@ public final class Started<T> {
         return thread;
     }
 
-    private static Exception reasonOf(final ExecutionException exception) {
-        Exception reason = exception;
-        if (exception.getCause() instanceof Exception) {
-            reason = (Exception) exception.getCause();
+    private static Throwable reasonOf(final ExecutionException exception) {
+        Throwable reason = exception;
+        if (exception.getCause() != null) {
+            reason = exception.getCause();
         }
         return reason;
     }
