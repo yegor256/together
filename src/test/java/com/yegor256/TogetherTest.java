@@ -286,4 +286,22 @@ final class TogetherTest {
             Matchers.is(true)
         );
     }
+
+    @Test
+    void keepsOriginalErrorAsCause() {
+        final AssertionError error = new AssertionError("expected something else");
+        MatcherAssert.assertThat(
+            "must expose the original Error thrown by the action, not its wrapper",
+            Assertions.assertThrows(
+                TogetherFailure.class,
+                () -> new Together<>(
+                    1,
+                    t -> {
+                        throw error;
+                    }
+                ).asList()
+            ).getCause(),
+            Matchers.sameInstance(error)
+        );
+    }
 }
