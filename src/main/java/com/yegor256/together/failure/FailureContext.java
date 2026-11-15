@@ -69,9 +69,7 @@ public final class FailureContext {
      * @return TRUE if yes
      */
     public boolean lastedAtLeast(final long duration, final TimeUnit unit) {
-        return unit == TimeUnit.MICROSECONDS || unit == TimeUnit.NANOSECONDS
-            ? unit.convert(this.elapsed, TimeUnit.MILLISECONDS) >= duration
-            : this.elapsed >= TimeUnit.MILLISECONDS.convert(duration, unit);
+        return unit.convert(this.elapsed, TimeUnit.MILLISECONDS) >= duration;
     }
 
     /**
