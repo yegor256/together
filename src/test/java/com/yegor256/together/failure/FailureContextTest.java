@@ -59,6 +59,50 @@ final class FailureContextTest {
     }
 
     @Test
+    void rejectsSubMillisecondThresholdAboveElapsed() {
+        MatcherAssert.assertThat(
+            "must reject threshold above elapsed time in microseconds",
+            new FailureContext(2, 7, 15L).lastedAtLeast(
+                15_999L, TimeUnit.MICROSECONDS
+            ),
+            Matchers.is(false)
+        );
+    }
+
+    @Test
+    void acceptsSubMillisecondThresholdAtElapsed() {
+        MatcherAssert.assertThat(
+            "must accept threshold equal to elapsed time in microseconds",
+            new FailureContext(2, 7, 15L).lastedAtLeast(
+                15_000L, TimeUnit.MICROSECONDS
+            ),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
+    void rejectsNanosecondThresholdAboveElapsed() {
+        MatcherAssert.assertThat(
+            "must reject threshold above elapsed time in nanoseconds",
+            new FailureContext(2, 7, 15L).lastedAtLeast(
+                15_000_001L, TimeUnit.NANOSECONDS
+            ),
+            Matchers.is(false)
+        );
+    }
+
+    @Test
+    void acceptsNanosecondThresholdAtElapsed() {
+        MatcherAssert.assertThat(
+            "must accept threshold equal to elapsed time in nanoseconds",
+            new FailureContext(2, 7, 15L).lastedAtLeast(
+                15_000_000L, TimeUnit.NANOSECONDS
+            ),
+            Matchers.is(true)
+        );
+    }
+
+    @Test
     void buildsMessageForTimeout() {
         MatcherAssert.assertThat(
             "must describe timeout",
