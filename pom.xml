@@ -148,17 +148,5 @@
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>sonatype</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.sonatype.central</groupId>
-            <artifactId>central-publishing-maven-plugin</artifactId>
-            <version>0.10.0</version>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
   </profiles>
 </project>
