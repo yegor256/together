@@ -32,7 +32,7 @@ public final class Execution<T> {
     /**
      * Failure.
      */
-    private final Exception failure;
+    private final Throwable failure;
 
     /**
      * Elapsed time.
@@ -62,6 +62,22 @@ public final class Execution<T> {
     }
 
     /**
+     * Ctor for failure with any throwable, including {@link Error}s
+     * such as {@link AssertionError}.
+     *
+     * <p>Package-private on purpose: the public failure ctor takes
+     * {@link Exception} and widening it would break binary
+     * compatibility with 0.2.0.</p>
+     *
+     * @param number Thread number
+     * @param problem Failure
+     * @param msec Elapsed
+     */
+    Execution(final int number, final Throwable problem, final long msec) {
+        this(number, null, problem, msec);
+    }
+
+    /**
      * Private ctor.
      *
      * @param number Thread number
@@ -69,7 +85,7 @@ public final class Execution<T> {
      * @param problem Failure
      * @param msec Elapsed
      */
-    private Execution(final int number, final T value, final Exception problem,
+    private Execution(final int number, final T value, final Throwable problem,
         final long msec) {
         this.thread = number;
         this.result = value;
