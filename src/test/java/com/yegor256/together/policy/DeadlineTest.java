@@ -18,6 +18,29 @@ import org.junit.jupiter.api.Test;
 final class DeadlineTest {
 
     @Test
+    void expiresWithoutAnAdditionalUnit() {
+        MatcherAssert.assertThat(
+            "must not renew an expired deadline",
+            new Deadline(1L, TimeUnit.MINUTES).from(
+                System.nanoTime() - TimeUnit.MINUTES.toNanos(2L)
+            ),
+            Matchers.equalTo(0L)
+        );
+    }
+
+    @Test
+    void preservesRemainingNanoseconds() {
+        MatcherAssert.assertThat(
+            "must retain the fractional minute in nanoseconds",
+            new Deadline(1L, TimeUnit.MINUTES).from(
+                System.nanoTime() - TimeUnit.SECONDS.toNanos(59L)
+            ),
+            Matchers.both(Matchers.greaterThan(TimeUnit.MILLISECONDS.toNanos(500L)))
+                .and(Matchers.lessThanOrEqualTo(TimeUnit.SECONDS.toNanos(1L)))
+        );
+    }
+
+    @Test
     void keepsPositiveRemainingTimeout() {
         final Deadline deadline = new Deadline(50L, TimeUnit.MILLISECONDS);
         final long left = deadline.from(System.nanoTime());
@@ -28,11 +51,11 @@ final class DeadlineTest {
         );
         MatcherAssert.assertThat(
             "must not increase timeout",
-            left <= 50L,
+            left <= TimeUnit.MILLISECONDS.toNanos(50L),
             Matchers.is(true)
         );
         MatcherAssert.assertThat(
-            "must keep time unit",
+            "must keep configured time unit",
             deadline.timeUnit(),
             Matchers.equalTo(TimeUnit.MILLISECONDS)
         );

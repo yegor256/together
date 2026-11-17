@@ -135,7 +135,7 @@ public final class Started<T> {
         try {
             future = this.completion.poll(
                 deadline.from(this.begun),
-                deadline.timeUnit()
+                TimeUnit.NANOSECONDS
             );
         } catch (final InterruptedException ex) {
             Thread.currentThread().interrupt();

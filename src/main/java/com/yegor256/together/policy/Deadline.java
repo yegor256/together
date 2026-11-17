@@ -41,23 +41,20 @@ public final class Deadline {
     }
 
     /**
-     * Remaining timeout.
+     * Remaining timeout in nanoseconds.
      *
      * @param start Start time
-     * @return Remaining timeout
+     * @return Remaining nanoseconds
      */
     public long from(final long start) {
         return Math.max(
-            1L,
-            this.limit - this.unit.convert(
-                System.nanoTime() - start,
-                TimeUnit.NANOSECONDS
-            )
+            0L,
+            this.unit.toNanos(this.limit) - (System.nanoTime() - start)
         );
     }
 
     /**
-     * Time unit.
+     * Configured time unit.
      *
      * @return Unit
      */
