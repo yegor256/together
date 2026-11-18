@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.73.4</version>
+    <version>0.73.5</version>
   </parent>
   <groupId>com.yegor256</groupId>
   <artifactId>together</artifactId>
@@ -144,24 +144,6 @@
             <groupId>com.qulice</groupId>
             <artifactId>qulice-maven-plugin</artifactId>
             <version>0.36.1</version>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>sonatype</id>
-      <build>
-        <plugins>
-          <plugin>
-            <!--
-            Maven 3.10 leaves maven-metadata-local.xml and _remote.repositories
-            in the staging directory. Plugin versions before 0.12.0 don't delete
-            them, and Central rejects the bundle. Remove this override once
-            com.jcabi:parent ships 0.12.0 or later.
-            -->
-            <groupId>org.sonatype.central</groupId>
-            <artifactId>central-publishing-maven-plugin</artifactId>
-            <version>0.12.0</version>
           </plugin>
         </plugins>
       </build>
