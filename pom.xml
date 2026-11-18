@@ -148,5 +148,23 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>sonatype</id>
+      <build>
+        <plugins>
+          <plugin>
+            <!--
+            Maven 3.10 leaves maven-metadata-local.xml and _remote.repositories
+            in the staging directory. Plugin versions before 0.12.0 don't delete
+            them, and Central rejects the bundle. Remove this override once
+            com.jcabi:parent ships 0.12.0 or later.
+            -->
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>0.12.0</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
 </project>
